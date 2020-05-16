@@ -1,0 +1,106 @@
+2020-05-10 00:15:13,885 [INFO ]  Starting Rasa server on http://localhost:5005
+2020-05-10 00:22:04,697 [INFO ]  Starting Rasa server on http://localhost:5005
+2020-05-10 00:22:17,281 [WARNI]  Feature 'intent_start' could not be found in feature map.
+2020-05-10 00:22:17,790 [WARNI]  Feature 'intent_start' could not be found in feature map.
+2020-05-10 00:22:17,791 [WARNI]  Feature 'intent_start' could not be found in feature map.
+2020-05-10 00:22:28,044 [WARNI]  Feature 'intent_start' could not be found in feature map.
+2020-05-10 00:22:28,046 [WARNI]  Feature 'intent_start' could not be found in feature map.
+2020-05-10 00:22:31,073 [WARNI]  Feature 'intent_start' could not be found in feature map.
+2020-05-10 00:22:31,076 [WARNI]  Feature 'intent_start' could not be found in feature map.
+2020-05-10 00:22:43,536 [WARNI]  Feature 'intent_start' could not be found in feature map.
+2020-05-10 00:22:43,539 [WARNI]  Feature 'intent_start' could not be found in feature map.
+2020-05-10 00:22:46,552 [WARNI]  Feature 'intent_start' could not be found in feature map.
+2020-05-10 20:11:41,052 [INFO ]  Starting Rasa server on http://localhost:5005
+2020-05-10 20:13:12,952 [INFO ]  Starting Rasa server on http://localhost:5005
+2020-05-13 14:12:18,496 [INFO ]  Starting Rasa server on http://localhost:5005
+2020-05-13 14:12:33,980 [ERROR]  Encountered an exception while running action 'ask_form'. Bot will continue, but the actions events are lost. Please check the logs of your action server for more information.
+2020-05-13 14:22:20,178 [INFO ]  Starting Rasa server on http://localhost:5005
+2020-05-13 14:22:29,478 [ERROR]  Unable to start server
+Traceback (most recent call last):
+  File "c:\python 37\lib\site-packages\sanic\server.py", line 895, in serve
+    http_server = loop.run_until_complete(server_coroutine)
+  File "c:\python 37\lib\asyncio\base_events.py", line 579, in run_until_complete
+    return future.result()
+  File "c:\python 37\lib\asyncio\base_events.py", line 1374, in create_server
+    % (sa, err.strerror.lower())) from None
+OSError: [Errno 10048] error while attempting to bind on address ('0.0.0.0', 5005): only one usage of each socket address (protocol/network address/port) is normally permitted
+2020-05-13 14:23:06,068 [INFO ]  Starting Rasa server on http://localhost:5005
+2020-05-13 14:23:15,086 [ERROR]  Unable to start server
+Traceback (most recent call last):
+  File "c:\python 37\lib\site-packages\sanic\server.py", line 895, in serve
+    http_server = loop.run_until_complete(server_coroutine)
+  File "c:\python 37\lib\asyncio\base_events.py", line 579, in run_until_complete
+    return future.result()
+  File "c:\python 37\lib\asyncio\base_events.py", line 1374, in create_server
+    % (sa, err.strerror.lower())) from None
+OSError: [Errno 10048] error while attempting to bind on address ('0.0.0.0', 5005): only one usage of each socket address (protocol/network address/port) is normally permitted
+2020-05-13 14:26:00,066 [INFO ]  Starting Rasa server on http://localhost:5050
+2020-05-13 14:27:59,043 [INFO ]  Starting Rasa server on http://localhost:5005
+2020-05-13 14:28:08,067 [ERROR]  Unable to start server
+Traceback (most recent call last):
+  File "c:\python 37\lib\site-packages\sanic\server.py", line 895, in serve
+    http_server = loop.run_until_complete(server_coroutine)
+  File "c:\python 37\lib\asyncio\base_events.py", line 579, in run_until_complete
+    return future.result()
+  File "c:\python 37\lib\asyncio\base_events.py", line 1374, in create_server
+    % (sa, err.strerror.lower())) from None
+OSError: [Errno 10048] error while attempting to bind on address ('0.0.0.0', 5005): only one usage of each socket address (protocol/network address/port) is normally permitted
+2020-05-13 14:28:36,931 [INFO ]  Starting Rasa server on http://localhost:5050
+2020-05-13 14:33:29,046 [INFO ]  Starting Rasa server on http://localhost:5005
+2020-05-13 14:33:38,282 [ERROR]  Unable to start server
+Traceback (most recent call last):
+  File "c:\python 37\lib\site-packages\sanic\server.py", line 895, in serve
+    http_server = loop.run_until_complete(server_coroutine)
+  File "c:\python 37\lib\asyncio\base_events.py", line 579, in run_until_complete
+    return future.result()
+  File "c:\python 37\lib\asyncio\base_events.py", line 1374, in create_server
+    % (sa, err.strerror.lower())) from None
+OSError: [Errno 10048] error while attempting to bind on address ('0.0.0.0', 5005): only one usage of each socket address (protocol/network address/port) is normally permitted
+2020-05-13 14:40:01,017 [INFO ]  Starting Rasa server on http://localhost:5005
+2020-05-13 14:40:10,233 [ERROR]  Unable to start server
+Traceback (most recent call last):
+  File "c:\python 37\lib\site-packages\sanic\server.py", line 895, in serve
+    http_server = loop.run_until_complete(server_coroutine)
+  File "c:\python 37\lib\asyncio\base_events.py", line 579, in run_until_complete
+    return future.result()
+  File "c:\python 37\lib\asyncio\base_events.py", line 1374, in create_server
+    % (sa, err.strerror.lower())) from None
+OSError: [Errno 10048] error while attempting to bind on address ('0.0.0.0', 5005): only one usage of each socket address (protocol/network address/port) is normally permitted
+2020-05-13 14:40:18,330 [INFO ]  Starting Rasa server on http://localhost:5005
+2020-05-13 14:40:27,671 [ERROR]  Unable to start server
+Traceback (most recent call last):
+  File "c:\python 37\lib\site-packages\sanic\server.py", line 895, in serve
+    http_server = loop.run_until_complete(server_coroutine)
+  File "c:\python 37\lib\asyncio\base_events.py", line 579, in run_until_complete
+    return future.result()
+  File "c:\python 37\lib\asyncio\base_events.py", line 1374, in create_server
+    % (sa, err.strerror.lower())) from None
+OSError: [Errno 10048] error while attempting to bind on address ('0.0.0.0', 5005): only one usage of each socket address (protocol/network address/port) is normally permitted
+2020-05-13 14:41:13,314 [INFO ]  Starting Rasa server on http://localhost:5005
+2020-05-13 14:41:22,395 [ERROR]  Unable to start server
+Traceback (most recent call last):
+  File "c:\python 37\lib\site-packages\sanic\server.py", line 895, in serve
+    http_server = loop.run_until_complete(server_coroutine)
+  File "c:\python 37\lib\asyncio\base_events.py", line 579, in run_until_complete
+    return future.result()
+  File "c:\python 37\lib\asyncio\base_events.py", line 1374, in create_server
+    % (sa, err.strerror.lower())) from None
+OSError: [Errno 10048] error while attempting to bind on address ('0.0.0.0', 5005): only one usage of each socket address (protocol/network address/port) is normally permitted
+2020-05-13 15:01:16,808 [INFO ]  Starting Rasa server on http://localhost:5005
+2020-05-13 15:02:17,280 [ERROR]  Encountered an exception while running action 'ask_form'. Bot will continue, but the actions events are lost. Please check the logs of your action server for more information.
+2020-05-13 15:03:42,158 [ERROR]  Encountered an exception while running action 'ask_form'. Bot will continue, but the actions events are lost. Please check the logs of your action server for more information.
+2020-05-13 15:04:22,392 [ERROR]  Encountered an exception while running action 'ask_form'. Bot will continue, but the actions events are lost. Please check the logs of your action server for more information.
+2020-05-13 15:04:45,344 [ERROR]  Encountered an exception while running action 'ask_form'. Bot will continue, but the actions events are lost. Please check the logs of your action server for more information.
+2020-05-13 15:05:51,700 [ERROR]  Encountered an exception while running action 'ask_form'. Bot will continue, but the actions events are lost. Please check the logs of your action server for more information.
+2020-05-13 15:07:39,349 [ERROR]  Encountered an exception while running action 'ask_form'. Bot will continue, but the actions events are lost. Please check the logs of your action server for more information.
+2020-05-13 15:09:15,455 [ERROR]  Encountered an exception while running action 'ask_form'. Bot will continue, but the actions events are lost. Please check the logs of your action server for more information.
+2020-05-13 15:09:54,604 [ERROR]  Encountered an exception while running action 'ask_form'. Bot will continue, but the actions events are lost. Please check the logs of your action server for more information.
+2020-05-13 15:11:28,630 [ERROR]  Encountered an exception while running action 'ask_form'. Bot will continue, but the actions events are lost. Please check the logs of your action server for more information.
+2020-05-13 15:12:22,868 [ERROR]  Encountered an exception while running action 'ask_form'. Bot will continue, but the actions events are lost. Please check the logs of your action server for more information.
+2020-05-13 15:17:20,880 [ERROR]  Encountered an exception while running action 'ask_form'. Bot will continue, but the actions events are lost. Please check the logs of your action server for more information.
+2020-05-13 15:18:04,622 [ERROR]  Encountered an exception while running action 'ask_form'. Bot will continue, but the actions events are lost. Please check the logs of your action server for more information.
+2020-05-13 15:18:26,653 [ERROR]  Encountered an exception while running action 'ask_form'. Bot will continue, but the actions events are lost. Please check the logs of your action server for more information.
+2020-05-13 15:19:52,213 [ERROR]  Encountered an exception while running action 'ask_form'. Bot will continue, but the actions events are lost. Please check the logs of your action server for more information.
+2020-05-13 15:21:55,814 [ERROR]  Encountered an exception while running action 'ask_form'. Bot will continue, but the actions events are lost. Please check the logs of your action server for more information.
+2020-05-13 15:22:10,518 [ERROR]  Encountered an exception while running action 'ask_form'. Bot will continue, but the actions events are lost. Please check the logs of your action server for more information.
+2020-05-13 15:22:21,461 [ERROR]  Encountered an exception while running action 'ask_form'. Bot will continue, but the actions events are lost. Please check the logs of your action server for more information.

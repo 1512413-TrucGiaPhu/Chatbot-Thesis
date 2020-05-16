@@ -1,0 +1,84 @@
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- greet
+- inform
+- goodbye
+- affirm
+- deny
+- mood_great
+- mood_unhappy
+- bot_challenge
+- ask_what
+- search
+- out_of_scope
+- thank
+- ask_yes_no
+entities:
+- city
+- phone_name
+- phone_property
+- phone_condition
+slots:
+  phone_condition:
+    type: text
+  phone_name:
+    type: text
+  phone_property:
+    type: text
+  requested_slot:
+    type: unfeaturized
+responses:
+  utter_ask_phone_name:
+  - text: Anh/ Chị vui lòng cung cấp tên điện thoại để em có thể tìm thông tin ạ
+  utter_ask_phone_property:
+  - text: Anh/Chị cung cấp giúp em tính năng hoặc tên bộ phận của điện thoại mình
+      cần hỏi ạ
+  utter_ask_phone_condition:
+  - text: Anh/Chị cung cấp giúp em tính năng của điện thoại với ạ
+  utter_cheer_up:
+  - image: http://res.cloudinary.com/xitun1233/image/upload/v1589022376/qc03nzphhf0kekqjcbzk.png
+    text: 'Here is something to cheer you up:'
+  utter_did_that_help:
+  - text: Điều đó có giúp được gì cho anh/chị không?
+  utter_goodbye:
+  - text: Tạm biệt anh/chị. Chúc anh/chị ngày mới tốt lành.
+  utter_greet:
+  - text: Xin chào Anh/Chị. Em là bot. Em có thể giúp được gì cho anh/chị?
+  utter_happy:
+  - text: Tuyệt vời
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_question:
+  - text: Dạ anh/chị có muốn hỏi thêm thông tin gì nữa không ạ?
+    buttons:
+    - title: Có
+      payload: /affirm
+    - title: Không
+      payload: /deny
+  utter_thank:
+  - text: Dạ, em cảm ơn anh/chị đã tin tưởng bên em.
+  utter_affirm:
+  - text: Dạ anh/chị cứ đặt câu hỏi ạ. Em sẽ giải đáp mọi thắc mắc của anh/chị
+  utter_deny:
+  - text: Dạ. Em cảm ơn anh/chị đã sử dụng dịch vụ bên em.
+actions:
+- action_answer_what
+- action_default_ask_affirmation
+- action_answer_yes_no
+- utter_ask_phone_name
+- utter_ask_phone_property
+- utter_ask_phone_condition
+- utter_cheer_up
+- utter_did_that_help
+- utter_goodbye
+- utter_greet
+- utter_happy
+- utter_iamabot
+- utter_question
+- utter_thank
+- utter_affirm
+- utter_deny
+forms:
+- ask_form

@@ -1,0 +1,12 @@
+﻿intent,button,entities
+affirm,Đúng rồi,
+bye,tạm biệt,
+deny,không,
+ask_what,Tôi muốn hỏi thông tin điện thoại {phone_name},phone_name
+ask_what,{phone_name},phone_name
+ask_what,{phone_property},phone_property
+ask_what,Hỏi thông tin về {phone_property} của điện thoại,phone_property
+inform,{phone_property},phone_property
+inform,{phone_name},phone_name
+greet,Xin chào,
+thank,cảm ơn,
