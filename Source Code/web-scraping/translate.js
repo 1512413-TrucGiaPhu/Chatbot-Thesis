@@ -74,11 +74,37 @@ function translateProperty(slotProperty, jsonTranslate) {
     }
     return result;
 }
-var stringTemp = "Pin 3300 mAh";
-var batteryCapacity = stringTemp.replace(/[^0-9]/g, '');
-var result = (parseInt(batteryCapacity, 10) / 2000) * (250 / 100);
-console.log(result);
-var minTime = Math.floor(result);
-var maxTime = minTime + 1.5;
+// var stringTemp = "Pin 3340 mAh";
+// var batteryCapacity = stringTemp.replace(/[^0-9]/g, '');
+// var result = (parseInt(batteryCapacity, 10) / 2000) * (250 / 100);
+// // console.log(result);
+// var minTime = Math.floor(result);
+// var maxTime = minTime + 1.5;
 
-console.log('Thời gian sử dụng pin trung bình là ' + minTime + '-' + maxTime);
+// console.log('Thời gian sử dụng pin trung bình là ' + minTime + '-' + maxTime);
+
+test = "Samsung Galaxy A51"
+data_phone_property = "Pin 4000 mAh";
+
+function getCompanyName(phone_name) {
+    var res = phone_name.slice(0, phone_name.search(' '));
+    if (res.search('iPhone') != -1) {
+        res = 'Apple';
+    }
+    return res;
+}
+
+function calBatteryChargingTime(price, phone_battery_capacity) {
+    // lấy dung lượng pin
+    var stringTemp = phone_battery_capacity;
+    var batteryCapacity = stringTemp.replace(/[^0-9]/g, '');
+
+    timeChargeDefault = ((batteryCapacity / 2) + 1000) / 1000;
+    maxTimeCharge = Math.ceil(timeChargeDefault);
+    result = timeChargeDefault + " - " + maxTimeCharge + " giờ";
+    return result;
+}
+
+
+
+console.log(calBatteryChargingTime(1690000, 'Pin 1690 mAh'));

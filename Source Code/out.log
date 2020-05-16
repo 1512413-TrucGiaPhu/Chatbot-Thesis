@@ -1,0 +1,14 @@
+2020-05-13 14:04:16,651 [INFO ]  Starting Rasa server on http://localhost:5005
+2020-05-13 14:05:39,137 [INFO ]  Starting Rasa server on http://localhost:5005
+2020-05-13 14:10:39,284 [INFO ]  Starting Rasa server on http://localhost:5005
+2020-05-13 14:31:26,462 [INFO ]  Starting Rasa server on http://localhost:5005
+2020-05-13 14:31:26,470 [ERROR]  Unable to start server
+Traceback (most recent call last):
+  File "c:\python 37\lib\site-packages\sanic\server.py", line 895, in serve
+    http_server = loop.run_until_complete(server_coroutine)
+  File "c:\python 37\lib\asyncio\base_events.py", line 579, in run_until_complete
+    return future.result()
+  File "c:\python 37\lib\asyncio\base_events.py", line 1374, in create_server
+    % (sa, err.strerror.lower())) from None
+OSError: [Errno 10048] error while attempting to bind on address ('0.0.0.0', 5005): only one usage of each socket address (protocol/network address/port) is normally permitted
+2020-05-13 14:31:45,331 [INFO ]  Starting Rasa server on http://localhost:5010
