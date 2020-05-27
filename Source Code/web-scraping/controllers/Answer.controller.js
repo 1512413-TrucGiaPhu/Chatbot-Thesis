@@ -229,7 +229,7 @@ jsonCondition = {
     "configureLow": ['thấp', 'cấu hình thấp'],
     "BatteryCalculator": ['xài', 'sử dụng', 'bao lâu', 'dùng'],
     "companyName": ['hãng', 'nhà sản xuất'],
-    "paperInstallment": ['thủ tục', 'giấy tờ'],
+    "paperInstallment": ['thủ tục', 'giấy tờ', 'trả góp'],
     "discount": ["khuyến mãi", "giảm giá"],
     "warranty": ["bảo hành"],
     "sạc pin nhanh": ["sạc nhanh"],
@@ -607,6 +607,9 @@ async function ActionWhat(phone_name, phone_property, phone_condition) {
                                 if (translateCondition == "BatteryCalculator" && MongoProperty == "battery_capacity") {
                                     var resultBatteryUsageTime = calBatteryUsageTime(jsonPhone);
                                     result["message"] = "Chào anh/chị. Dạ sản phẩm " + phone_name + " có thể sử dụng trong khoảng " + resultBatteryUsageTime + " tuỳ độ sáng màn hình, kết nối, tác vụ,... anh/chị nhé. Thông tin đến anh/chị."
+                                    result["isFlag"] = true;
+                                } else if (translateCondition == "paperInstallment" && MongoProperty == "price") {
+                                    result["message"] = "Chào anh/chị ! Dạ với sản phẩm " + phone_name + " này mua trả góp với được góp với giá " + jsonPhone.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' }) + " đó ạ. Anh/chị đủ từ 20 tuổi đến đủ 60 tuổi thì vui lòng cho em biết mình đang có các giấy tờ nào (CMND, sổ Hộ khẩu, Bằng lái xe, Hóa đơn điện/cáp/nước/internet), muốn trả trước bao nhiêu và muốn trả góp trong vòng bao nhiêu tháng để bên em hỗ trợ kiểm tra và tư vấn gói trả góp phù hợp cho anh nhé.Mong phản hồi từ anh.";
                                     result["isFlag"] = true;
                                 } else {
                                     result["message"] = "Chào anh/chị. Sau quá trình em kiểm tra thì thấy " + phone_property + " chỉ có " + jsonPhone[MongoProperty] + " và không hỗ trợ " + translateCondition;
