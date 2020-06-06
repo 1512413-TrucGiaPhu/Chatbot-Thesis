@@ -1,0 +1,63 @@
+<section id="registrationPage">
+  <div class="container p-5">
+    <div class="row mt-5">
+      <div class="col-lg-4 offset-lg-4">
+        <app-message></app-message>
+        <div class="card bg-light">
+          <div class="card-body">
+            <h4 class="text-center">Registration</h4>
+            <hr>
+            <form>
+              <div class="form-group" [formGroup]="form">
+                <label class="form-control-label" required="true">Name</label>
+                <input type="text" class="form-control" formControlName="name">
+                <div
+                  *ngIf="form.controls['name'].hasError('required') && (form.controls['name'].touched || form.controls['name'].dirty)">
+                  <p style="color: red">Name is required</p>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-control-label">Email</label>
+                  <input type="email" class="form-control" formControlName="email">
+                  <div *ngIf="form.controls['email'].hasError('email')">
+                    <p style="color: red">Email is invalid</p>
+                  </div>
+                  <div
+                    *ngIf="form.controls['email'].hasError('required') && (form.controls['email'].touched || form.controls['email'].dirty)">
+                    <p style="color: red">Email is required</p>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-control-label">Password</label>
+                  <input type="password" class="form-control" formControlName="password">
+                  <div
+                    *ngIf="form.controls['password'].hasError('required') && (form.controls['password'].touched || form.controls['password'].dirty)">
+                    <p style="color: red">Password is required</p>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-control-label">Confirm Password</label>
+                  <input type="password" class="form-control" formControlName="repassword">
+                  <div
+                    *ngIf="form.controls['repassword'].hasError('required') && (form.controls['repassword'].touched || form.controls['repassword'].dirty)">
+                    <p style="color: red">Confirm Password is required</p>
+                  </div>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input type="checkbox" id="form-check-input" formControlName="isSeller">Register as a Seller
+                  </label>
+                </div>
+              </div>
+              <div>
+                <hr>
+                <button type="button" class="btn btn-primary btn-block" (click)="register()"
+                  [disabled]="form.invalid || formIsLoading">Register</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
