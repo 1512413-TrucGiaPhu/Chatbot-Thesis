@@ -25,6 +25,7 @@ import { ProductComponent } from './product/product.component';
 import { SearchComponent } from './search/search.component';
 import { CartComponent } from './cart/cart.component';
 import { ChatboxComponent } from './chatbox/chatbox.component';
+import { PhoneCompareComponent } from './phone-compare/phone-compare.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ChatboxComponent } from './chatbox/chatbox.component';
     ProductComponent,
     SearchComponent,
     CartComponent,
-    ChatboxComponent
+    ChatboxComponent,
+    PhoneCompareComponent
   ],
   imports: [
     BrowserModule,

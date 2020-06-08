@@ -14,6 +14,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { MyProductsComponent } from './my-products/my-products.component';
 import { SearchComponent } from './search/search.component';
+import { PhoneCompareComponent } from './phone-compare/phone-compare.component';
 
 const routes: Routes = [
   {
@@ -74,6 +75,10 @@ const routes: Routes = [
   {
     path: 'product/:id',
     component: ProductComponent
+  },
+  {
+    path: 'phone-compare',
+    component: PhoneCompareComponent
   },
   {
     path: '**',
