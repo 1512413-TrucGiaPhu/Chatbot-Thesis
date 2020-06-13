@@ -43,14 +43,14 @@ class AskWhatAction(Action):
         dataPhone = {'PhoneName': phone_name, 'PhoneProperty': phone_property, 'PhoneCondition': phone_condition}
        
 
-        rPost = requests.post('http://localhost:3000/answer/actionWhat', data=dataPhone)
+        rPost = requests.post('http://localhost:3030/api/answer/what', data=dataPhone)
         results = rPost.json()
         ImageLink =""
     
         if results["isFlag"]:
             message = results["message"]
         else:
-            SearchKeyword = requests.post('http://localhost:3000/answer/SearchKeyword', data=dataPhone)
+            SearchKeyword = requests.post('http://localhost:3030/api/answer/searchkeyword', data=dataPhone)
             results = SearchKeyword.json()
             print(results)
             ImageLink = results['urlImage']
@@ -74,14 +74,14 @@ class AskYesNoAction(Action):
         dataPhone = {'PhoneName': phone_name, 'PhoneProperty': phone_property, 'PhoneCondition': phone_condition}
        
 
-        rPost = requests.post('http://localhost:3000/answer/actionYesNo', data=dataPhone)
+        rPost = requests.post('http://localhost:3030/api/answer/yesno', data=dataPhone)
         results = rPost.json()
         ImageLink =""
     
         if results["isFlag"]:
             message = results["message"]
         else:
-            SearchKeyword = requests.post('http://localhost:3000/answer/SearchKeyword', data=dataPhone)
+            SearchKeyword = requests.post('http://localhost:3030/api/answer/searchkeyword', data=dataPhone)
             results = SearchKeyword.json()
             print(results)
             ImageLink = results['urlImage']

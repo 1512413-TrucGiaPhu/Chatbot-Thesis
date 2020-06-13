@@ -77,9 +77,17 @@
   - utter_thank
 
 ## New Story
-- slot{"phone_condition":"khuyến mãi"}
-* ask_what{"phone_name":"iPhone 11","phone_condition":"khuyến mãi"}
-    - slot{"phone_condition":"khuyến mãi"}
+- slot{"phone_property_value":"khuyến mãi"}
+* ask_what{"phone_name":"iPhone 11","phone_property_value":"khuyến mãi"}
+    - slot{"phone_property_value":"khuyến mãi"}
     - slot{"phone_name":"iPhone 11"}
     - action_answer_what
+    - utter_question
+## interactive_story_1
+* ask_yes_no{"phone_name": "Vivo Y17", "phone_property": "chơi game", "phone_property_value": "tốt"}
+    - slot{"phone_name": "Vivo Y17"}
+    - slot{"phone_property": "chơi game"}
+    - slot{"phone_property_value": "tốt"}
+    - action_answer_yes_no
+    - reset_slots
     - utter_question
