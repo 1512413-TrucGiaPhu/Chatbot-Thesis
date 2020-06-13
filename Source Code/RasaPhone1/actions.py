@@ -39,8 +39,8 @@ class AskWhatAction(Action):
         # lấy các entities
         phone_name = tracker.get_slot("phone_name")
         phone_property = tracker.get_slot("phone_property")
-        phone_condition = tracker.get_slot("phone_condition")
-        dataPhone = {'PhoneName': phone_name, 'PhoneProperty': phone_property, 'PhoneCondition': phone_condition}
+        phone_property_value = tracker.get_slot("phone_property_value")
+        dataPhone = {'PhoneName': phone_name, 'PhoneProperty': phone_property, 'PhonePropertyValue': phone_property_value}
        
 
         rPost = requests.post('http://localhost:3030/api/answer/what', data=dataPhone)
@@ -50,11 +50,13 @@ class AskWhatAction(Action):
         if results["isFlag"]:
             message = results["message"]
         else:
+            messageLasted = results["message"]
             SearchKeyword = requests.post('http://localhost:3030/api/answer/searchkeyword', data=dataPhone)
             results = SearchKeyword.json()
             print(results)
-            ImageLink = results['urlImage']
-            message ="Dạ chào Anh/Chị. Sau quá trình em kiểm tra thì dữ liệu của bên em không đủ đáp ứng để trả lời câu hỏi của anh/chị. Em có tìm kiếm trên google thì thấy được kết quả. Anh/chị có thể tham khảo thử: {}".format(results['searchLink'])
+            
+            ImageLink = results["urlImage"]
+            message =messageLasted + ". Em có tìm kiếm trên google thì thấy được kết quả. Anh/chị có thể tham khảo thử: {}".format(results['searchLink'])
         # Send responses back to the user
         dispatcher.utter_message(text=message,image=ImageLink)
         return [AllSlotsReset()]
@@ -70,8 +72,8 @@ class AskYesNoAction(Action):
         # lấy các entities
         phone_name = tracker.get_slot("phone_name")
         phone_property = tracker.get_slot("phone_property")
-        phone_condition = tracker.get_slot("phone_condition")
-        dataPhone = {'PhoneName': phone_name, 'PhoneProperty': phone_property, 'PhoneCondition': phone_condition}
+        phone_property_value = tracker.get_slot("phone_property_value")
+        dataPhone = {'PhoneName': phone_name, 'PhoneProperty': phone_property, 'PhonePropertyValue': phone_property_value}
        
 
         rPost = requests.post('http://localhost:3030/api/answer/yesno', data=dataPhone)
@@ -81,11 +83,13 @@ class AskYesNoAction(Action):
         if results["isFlag"]:
             message = results["message"]
         else:
+            messageLasted = results["message"]
             SearchKeyword = requests.post('http://localhost:3030/api/answer/searchkeyword', data=dataPhone)
             results = SearchKeyword.json()
             print(results)
-            ImageLink = results['urlImage']
-            message ="Dạ chào Anh/Chị. Sau quá trình em kiểm tra thì dữ liệu của bên em không đủ đáp ứng để trả lời câu hỏi của anh/chị. Em có tìm kiếm trên google thì thấy được kết quả. Anh/chị có thể tham khảo thử: {}".format(results['searchLink'])
+            
+            ImageLink = results["urlImage"]
+            message =messageLasted + ". Em có tìm kiếm trên google thì thấy được kết quả. Anh/chị có thể tham khảo thử: {}".format(results['searchLink'])
         # Send responses back to the user
         dispatcher.utter_message(text=message,image=ImageLink)
         return [AllSlotsReset()]
@@ -97,8 +101,8 @@ class AskForm(FormAction):
 
     @staticmethod
     def required_slots(tracker: Tracker):
-        if (not (tracker.get_slot('phone_condition') is None)):
-            return ['phone_name', 'phone_condition']
+        if (not (tracker.get_slot('phone_property_value') is None)):
+            return ['phone_name', 'phone_property_value']
         else:
             return ['phone_name', 'phone_property']
         
@@ -114,7 +118,7 @@ class AskForm(FormAction):
     def submit(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict]:
         phone_name = tracker.get_slot("phone_name")
         phone_property = tracker.get_slot("phone_property")
-        phone_condition = tracker.get_slot("phone_condition")
+        phone_property_value = tracker.get_slot("phone_property_value")
 
          # Lay danh sach intent
         intent_ranking = tracker.latest_message.get("intent_ranking", [])

@@ -8,107 +8,106 @@ const puppeteer = require("puppeteer");
 
 // config cloudinary
 cloudinary.config({
-  cloud_name: "xitun1234",
-  api_key: "446615863382835",
-  api_secret: "V9h9XGwIlGc9GYA0IjzrtUUY68Q"
+    cloud_name: "xitun1234",
+    api_key: "446615863382835",
+    api_secret: "V9h9XGwIlGc9GYA0IjzrtUUY68Q"
 });
 
 mongoose
-  .connect(dbPhone, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology:true })
-  .then(() => console.log("DBPhone Connected"))
-  .catch(err => console.log(err));
+    .connect(dbPhone, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+    .then(() => console.log("DBPhone Connected"))
+    .catch(err => console.log(err));
 
 
 // api search keyword in google
 router.post("/searchkeyword", (req, res, next) => {
-  let PhoneName = req.body.PhoneName;
-  let PhoneProperty = req.body.PhoneProperty;
-  let PhoneCondition = req.body.PhonePropertyValue;
+    let PhoneName = req.body.PhoneName;
+    let PhoneProperty = req.body.PhoneProperty;
+    let PhoneCondition = req.body.PhonePropertyValue;
 
-  var keyword = PhoneProperty + " " + PhoneCondition + " " + PhoneName;
+    var keyword = PhoneProperty + " " + PhoneCondition + " " + PhoneName;
 
-  if (PhoneProperty && !PhoneCondition) {
-    keyword = PhoneProperty + " " + PhoneName;
-  } else if (!PhoneProperty && PhoneCondition) {
-    keyword = PhoneCondition + " " + PhoneName;
-  } else if (PhoneProperty && PhoneCondition) {
-    keyword = PhoneProperty + " " + PhoneCondition + " " + PhoneName;
-  }
-  console.log(keyword);
-  (async () => {
-    const browser = await puppeteer.launch({
-      headless: false,
-      args: [
-        "--incognito",
-        "--no-sandbox",
-        "--disable-setuid-sandbox",
-        "--disable-accelerated-2d-canvas",
-        "--disable-gpu"
-      ]
-    });
-    let result = {
-      keyword: "",
-      urlImage: "",
-      searchLink: ""
-    };
-
-    console.log("Browser openned");
-
-    const context = await browser.createIncognitoBrowserContext();
-    const page = await context.newPage();
-    page.setViewport({ width: 1280, height: 720 });
-    const url = "https://www.google.com.vn/";
-    await page.goto(url, { waitUntil: "networkidle2" });
-    console.log("Page loaded");
-    await page.waitFor(500);
-
-    // input keyword
-    const inputSearch = await page.evaluate(
-      ({ keyword }) => {
-        let inputText = document.getElementsByClassName("gLFyf gsfi");
-        inputText[0].value = keyword;
-        let clickButtonSearch = document.getElementsByClassName("gNO89b");
-        clickButtonSearch[0].click();
-      },
-      { keyword }
-    );
-    await page.waitForNavigation({ waitUntil: "domcontentloaded" });
-
-    await page.waitForFunction("document.title.length != 16");
-
-    const urlCurrent = await page.evaluate(() => {
-      return window.location.href;
-    });
-    result.keyword = keyword;
-    result.searchLink = urlCurrent;
-    await page.waitFor(500);
-    const screenshot = await page.screenshot({
-      omitBackground: true,
-      encoding: "binary"
-    });
-
-    function uploadScreenshot(screenshot) {
-      return new Promise((resolve, reject) => {
-        const uploadOptions = {};
-        cloudinary.uploader
-          .upload_stream(uploadOptions, (err, result) => {
-            if (err) reject(err);
-            else resolve(result);
-          })
-          .end(screenshot);
-      });
+    if (PhoneProperty && !PhoneCondition) {
+        keyword = PhoneProperty + " " + PhoneName;
+    } else if (!PhoneProperty && PhoneCondition) {
+        keyword = PhoneCondition + " " + PhoneName;
+    } else if (PhoneProperty && PhoneCondition) {
+        keyword = PhoneProperty + " " + PhoneCondition + " " + PhoneName;
     }
-    // uploadScreenshot(screenshot).then((result) => {
-    //     result.screenshot = result;
-    // })
+    console.log(keyword);
+    (async() => {
+        const browser = await puppeteer.launch({
+            headless: false,
+            args: [
+                "--incognito",
+                "--no-sandbox",
+                "--disable-setuid-sandbox",
+                "--disable-accelerated-2d-canvas",
+                "--disable-gpu"
+            ]
+        });
+        let result = {
+            keyword: "",
+            urlImage: "",
+            searchLink: ""
+        };
 
-    let urlLink = await uploadScreenshot(screenshot);
+        console.log("Browser openned");
 
-    result.urlImage = urlLink.url;
+        const context = await browser.createIncognitoBrowserContext();
+        const page = await context.newPage();
+        page.setViewport({ width: 1280, height: 720 });
+        const url = "https://www.google.com.vn/";
+        await page.goto(url, { waitUntil: "networkidle2" });
+        console.log("Page loaded");
+        await page.waitFor(500);
 
-    res.send(result);
-    await browser.close();
-  })();
+        // input keyword
+        const inputSearch = await page.evaluate(
+            ({ keyword }) => {
+                let inputText = document.getElementsByClassName("gLFyf gsfi");
+                inputText[0].value = keyword;
+                let clickButtonSearch = document.getElementsByClassName("gNO89b");
+                clickButtonSearch[0].click();
+            }, { keyword }
+        );
+        await page.waitForNavigation({ waitUntil: "domcontentloaded" });
+
+        await page.waitForFunction("document.title.length != 16");
+
+        const urlCurrent = await page.evaluate(() => {
+            return window.location.href;
+        });
+        result.keyword = keyword;
+        result.searchLink = urlCurrent;
+        await page.waitFor(500);
+        const screenshot = await page.screenshot({
+            omitBackground: true,
+            encoding: "binary"
+        });
+
+        function uploadScreenshot(screenshot) {
+            return new Promise((resolve, reject) => {
+                const uploadOptions = {};
+                cloudinary.uploader
+                    .upload_stream(uploadOptions, (err, result) => {
+                        if (err) reject(err);
+                        else resolve(result);
+                    })
+                    .end(screenshot);
+            });
+        }
+        // uploadScreenshot(screenshot).then((result) => {
+        //     result.screenshot = result;
+        // })
+
+        let urlLink = await uploadScreenshot(screenshot);
+
+        result.urlImage = urlLink.url;
+
+        res.send(result);
+        await browser.close();
+    })();
 });
 
 var jsonTranslate = {
@@ -160,8 +159,8 @@ var jsonTranslate = {
     "watchfilm": ["xem phim"],
     "music": ["MP3", "nghe nhạc"],
     "time_of_lunch": ["ngày ra mắt"],
-    "chơi game": ["chơi game", "pubg", "liên quân", "free fire", "honkai impact 3", "bigo live"],
-    
+    "chơi game": ["chơi game", "game", "pubg", "liên quân", "free fire", "honkai impact 3", "bigo live"],
+
     "Chuẩn Kháng nước": ["chống nước", "kháng nước"],
     "AOD": ["Màn hình luôn hiển thị", "always on display"],
     "Nhân bản ứng dụng": ["nhân bản ứng dụng", "nhân đôi ứng dụng"],
@@ -180,7 +179,7 @@ var jsonTranslate = {
     "configureHigh": ['cao', 'cấu hình cao', "max setting"],
     "configureMedium": ['ổn', 'mượt', 'bình thường', 'tốt', 'cấu hình', 'lag', 'đồ họa trung bình cao'],
     "configureLow": ['thấp', 'cấu hình thấp'],
-    "BatteryCalculator": ['xài', 'sử dụng', 'bao lâu', 'dùng', 'bao nhiêu', 'mấy tiếng'],
+    "BatteryCalculator": ['xài', 'sử dụng', 'bao lâu', 'dùng', 'bao nhiêu', 'mấy tiếng', 'lâu'],
     "companyName": ['hãng', 'nhà sản xuất', 'hãng sản xuất'],
     "paperInstallment": ['thủ tục', 'giấy tờ', 'trả góp'],
 };
@@ -204,7 +203,7 @@ function translateProperty(slotProperty, jsonTranslate) {
 
 // Tìm giá trị của thuộc tính
 function SearchPropertyValue(obj, searchValue) {
-    return Object.keys(obj).some(function (key) {
+    return Object.keys(obj).some(function(key) {
         var tempKey = obj[key].toString().toLowerCase();
 
         return tempKey.includes(searchValue.toString().toLowerCase());
@@ -285,7 +284,7 @@ function calBatteryChargingTime(jsonPhone) {
     return result;
 }
 
-router.post('/queryMongo', (req, res, next) =>{
+router.post('/queryMongo', (req, res, next) => {
     var PhoneName = req.body.PhoneName;
     var mongo_property = req.body.MongoProperty;
 
@@ -325,56 +324,49 @@ async function ActionYesNo(phone_name, phone_property, phone_property_value) {
             }
 
             // case 1: Chỉ có phoneName & phoneProperty
-            if (phone_property && !phone_property_value ) {
-      
+            if (phone_property && !phone_property_value) {
+
                 var translatePhoneProperty = translateProperty(phone_property, jsonTranslate);
 
                 var __searchPropertyKey = SearchPropertyKey(jsonPhone, translatePhoneProperty);
-                if (__searchPropertyKey)
-                {
+                if (__searchPropertyKey) {
                     result["message"] = "Chào anh/chị. Sau quá trình em kiểm tra thì máy " + phone_name + " có " + phone_property + ": " + jsonPhone[translatePhoneProperty] + " . Xin thông tin đến anh/chị!";
                     result["isFlag"] = true;
                     return result;
-                }
-                else {
+                } else {
                     // tìm giá trị thuộc tính
                     var __searchPropertyValue = SearchPropertyValue(jsonPhone, translatePhoneProperty);
 
                     // tìm thấy
-                    if (__searchPropertyValue)
-                    {
+                    if (__searchPropertyValue) {
                         result["message"] = "Chào anh/chị. Sau quá trình em kiểm tra thì máy " + phone_name + " có hỗ trợ " + phone_property + ". Xin thông tin đến anh/chị!";
                         result["isFlag"] = true;
                         return result;
-                    }
-                    else if (__searchPropertyValue === false)
-                    {
-                    //  special case handling
-                    if (translatePhoneProperty == "isAvailable") {
-                        result["message"] = "Chào anh/chị. Hiện tại sản phẩm Điện thoại " + phone_name + " bên em còn hàng đó ạ. Giá của máy là " + jsonPhone.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' }) + " . Anh/chị có thể tham khảo nha. Thông tin đến anh/chị";
-                        result["isFlag"] = true;
-                    } else if (translatePhoneProperty == "checkNew") {
-                        result["message"] = "Chào anh/chị. Hiện tại bên em chỉ kinh doanh điện thoại mới nguyên seal, chính hãng Việt Nam ạ. Bên em không có kinh doanh máy cũ. Thông tin đến anh/chị";
-                        result["isFlag"] = true;
-                    } else if (translatePhoneProperty == "discount") {
-                        result["message"] = "Chào anh/chị. Dạ hiện sản phẩm Điện thoại " + phone_name + ' bên em đang có chương trình khuyến mãi. Giảm thêm 5% (' + ((jsonPhone.price * 5) / 100).toLocaleString('it-IT', { style: 'currency', currency: 'VND' }) + ' ) cho khách hàng mua online có sinh nhật trong tháng này ạ. Xin thông tin đến anh/chị';
-                        result["isFlag"] = true;
-                    } else if (translatePhoneProperty == "warranty") {
-                        result["message"] = "Chào anh/chị. Dạ hiện sản phẩm " + phone_name + " hỗ trợ Bảo hành chính hãng 12 tháng và 1 đổi 1 trong vòng 1 tháng nếu sản phẩm có lỗi từ nhà sản xuất. Thông tin đến anh/chị";
-                        result["isFlag"] = true;
-                    }else if (translatePhoneProperty == "paperInstallment") {
-                        result["message"] = "Chào anh/chị ! Dạ nếu anh/chị đủ 20 - 60 tuổi, có CMND và Hộ khẩu hoặc CMND và Bằng lái xe thì anh/chị có thể mua trả góp được rồi anh/chị nha, nếu anh/chị cần bên em hỗ trợ gì thêm anh/chị có thể phản hồi bên dưới anh/chị nhé. Thông tin đến anh/chị !";
-                        result["isFlag"] = true;
-                    }else if (translatePhoneProperty.search('game') != -1)
-                    {
-                        result["message"] = AnswerGameCondition(jsonPhone, phone_property_value).message;
-                        result["isFlag"] = true;
-                    }
-                    else {
-                        result["message"] = "Chào anh/chị. Sau quá trình kiểm tra dữ liệu của hệ thống bên em thì máy " + phone_name + " không có hỗ trợ " + phone_property + ". Thông tin đến anh/chị" ;
-                        result["isFlag"] = false;
-                    }
-                    return result;                        
+                    } else if (__searchPropertyValue === false) {
+                        //  special case handling
+                        if (translatePhoneProperty == "isAvailable") {
+                            result["message"] = "Chào anh/chị. Hiện tại sản phẩm Điện thoại " + phone_name + " bên em còn hàng đó ạ. Giá của máy là " + jsonPhone.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' }) + " . Anh/chị có thể tham khảo nha. Thông tin đến anh/chị";
+                            result["isFlag"] = true;
+                        } else if (translatePhoneProperty == "checkNew") {
+                            result["message"] = "Chào anh/chị. Hiện tại bên em chỉ kinh doanh điện thoại mới nguyên seal, chính hãng Việt Nam ạ. Bên em không có kinh doanh máy cũ. Thông tin đến anh/chị";
+                            result["isFlag"] = true;
+                        } else if (translatePhoneProperty == "discount") {
+                            result["message"] = "Chào anh/chị. Dạ hiện sản phẩm Điện thoại " + phone_name + ' bên em đang có chương trình khuyến mãi. Giá hiện tại là ' + (jsonPhone.price).toLocaleString('it-IT', { style: 'currency', currency: 'VND' }) + '. Giảm thêm 5% (' + ((jsonPhone.price * 5) / 100).toLocaleString('it-IT', { style: 'currency', currency: 'VND' }) + ') cho khách hàng mua online có sinh nhật trong tháng này ạ. Xin thông tin đến anh/chị';
+                            result["isFlag"] = true;
+                        } else if (translatePhoneProperty == "warranty") {
+                            result["message"] = "Chào anh/chị. Dạ hiện sản phẩm " + phone_name + " hỗ trợ Bảo hành chính hãng 12 tháng và 1 đổi 1 trong vòng 1 tháng nếu sản phẩm có lỗi từ nhà sản xuất. Thông tin đến anh/chị";
+                            result["isFlag"] = true;
+                        } else if (translatePhoneProperty == "paperInstallment") {
+                            result["message"] = "Chào anh/chị ! Dạ nếu anh/chị đủ 20 - 60 tuổi, có CMND và Hộ khẩu hoặc CMND và Bằng lái xe thì anh/chị có thể mua trả góp được rồi anh/chị nha, nếu anh/chị cần bên em hỗ trợ gì thêm anh/chị có thể phản hồi bên dưới anh/chị nhé. Thông tin đến anh/chị !";
+                            result["isFlag"] = true;
+                        } else if (translatePhoneProperty.search('game') != -1) {
+                            result["message"] = AnswerGameCondition(jsonPhone, phone_property_value).message;
+                            result["isFlag"] = true;
+                        } else {
+                            result["message"] = "Chào anh/chị. Sau quá trình kiểm tra dữ liệu của hệ thống bên em thì máy " + phone_name + " không có hỗ trợ " + phone_property;
+                            result["isFlag"] = false;
+                        }
+                        return result;
                     }
                 }
                 // case 2
@@ -382,30 +374,23 @@ async function ActionYesNo(phone_name, phone_property, phone_property_value) {
 
                 // tìm từ đồng nghĩa
                 var translatePhoneProperty = translateProperty(phone_property, jsonTranslate);
-                var translatePhonePropertyValue =translateProperty(phone_property_value, jsonTranslate);
+                var translatePhonePropertyValue = translateProperty(phone_property_value, jsonTranslate);
                 // kiểm tra dữ liệu
-                if (jsonPhone[translatePhoneProperty])
-                {
+                if (jsonPhone[translatePhoneProperty]) {
                     var __findValueInKey = jsonPhone[translatePhoneProperty].toLowerCase().includes(translatePhonePropertyValue.toString().toLowerCase());
-                }
-                else if (translatePhoneProperty.search('game') != -1 && translatePhonePropertyValue.search('configure')!=-1)
-                {
+                } else if (translatePhoneProperty.search('game') != -1 && translatePhonePropertyValue.search('configure') != -1) {
                     result["message"] = AnswerGameCondition(jsonPhone, phone_property_value).message;
                     result["isFlag"] = true;
-                }
-                else
-                {
+                } else {
                     result["message"] = "Chào anh/chị. Sau quá trình kiểm tra dữ liệu của hệ thống bên em thì bên em không đủ yếu tố để trả lời câu hỏi của anh/chị. Mong anh/chị thông cảm giúp bên em. Em vừa tham khảo google thì có thông tin như sao"
-                    result["isFlag"] = false; 
+                    result["isFlag"] = false;
                 }
 
                 // tìm value trong keyProperty
-                if (__findValueInKey)
-                {
+                if (__findValueInKey) {
                     result["message"] = "Chào anh/chị. Sau quá trình em kiểm tra thì thấy máy " + phone_name + " có " + phone_property + " hỗ trợ " + phone_property_value;
                     result["isFlag"] = true;
-                }
-                else if (__findValueInKey === false){
+                } else if (__findValueInKey === false) {
                     result["message"] = "Chào anh/chị. Sau quá trình em kiểm tra thì thấy " + phone_property + " chỉ có " + jsonPhone[translatePhoneProperty] + " và không hỗ trợ " + phone_property_value;
                     result["isFlag"] = true;
                 }
@@ -432,7 +417,7 @@ async function ActionYesNo(phone_name, phone_property, phone_property_value) {
     })
 }
 
-router.post('/yesno', (req, res, next) =>{
+router.post('/yesno', (req, res, next) => {
     var PhoneName = req.body.PhoneName;
     var PhoneProperty = req.body.PhoneProperty;
     var PhonePropertyValue = req.body.PhonePropertyValue;
@@ -473,58 +458,53 @@ async function ActionWhat(phone_name, phone_property, phone_property_value) {
             }
 
             // case 1: Chỉ có phoneName & phoneProperty
-            if (phone_property && !phone_property_value ) {
-      
+            if (phone_property && !phone_property_value) {
+
                 var translatePhoneProperty = translateProperty(phone_property, jsonTranslate);
 
                 var __searchPropertyKey = SearchPropertyKey(jsonPhone, translatePhoneProperty);
 
-                if (__searchPropertyKey)
-                {
+                if (__searchPropertyKey) {
                     result["message"] = "Chào anh/chị. Sau quá trình em kiểm tra thì máy " + phone_name + " có " + phone_property + ": " + jsonPhone[translatePhoneProperty] + " . Xin thông tin đến anh/chị!";
                     result["isFlag"] = true;
                     return result;
-                }
-                else {
+                } else {
                     // tìm giá trị thuộc tính
                     var __searchPropertyValue = SearchPropertyValue(jsonPhone, translatePhoneProperty);
 
                     // tìm thấy
-                    if (__searchPropertyValue)
-                    {
+                    if (__searchPropertyValue) {
                         result["message"] = "Chào anh/chị. Sau quá trình em kiểm tra thì máy " + phone_name + " có hỗ trợ " + phone_property + ". Xin thông tin đến anh/chị!";
                         result["isFlag"] = true;
                         return result;
-                    }
-                    else if (__searchPropertyValue === false)
-                    {
-                    //  special case handling
-                    if (translatePhoneProperty == "isAvailable") {
-                        result["message"] = "Chào anh/chị. Hiện tại sản phẩm Điện thoại " + phone_name + " bên em còn hàng đó ạ. Giá của máy là " + jsonPhone.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' }) + " . Anh/chị có thể tham khảo nha. Thông tin đến anh/chị";
-                        result["isFlag"] = true;
-                    } else if (translatePhoneProperty == "checkNew") {
-                        result["message"] = "Chào anh/chị. Hiện tại bên em chỉ kinh doanh điện thoại mới nguyên seal, chính hãng Việt Nam ạ. Bên em không có kinh doanh máy cũ. Thông tin đến anh/chị";
-                        result["isFlag"] = true;
-                    } else if (translatePhoneProperty == "discount") {
-                        result["message"] = "Chào anh/chị. Dạ hiện sản phẩm Điện thoại " + phone_name + ' bên em đang có chương trình khuyến mãi. Giảm thêm 5% (' + ((jsonPhone.price * 5) / 100).toLocaleString('it-IT', { style: 'currency', currency: 'VND' }) + ' ) cho khách hàng mua online có sinh nhật trong tháng này ạ. Xin thông tin đến anh/chị';
-                        result["isFlag"] = true;
-                    }else if (translatePhoneProperty == "paperInstallment") {
-                        result["message"] = "Chào anh/chị ! Dạ nếu anh/chị đủ 20 - 60 tuổi, có CMND và Hộ khẩu hoặc CMND và Bằng lái xe thì anh/chị có thể mua trả góp được rồi anh/chị nha, nếu anh/chị cần bên em hỗ trợ gì thêm anh/chị có thể phản hồi bên dưới anh/chị nhé. Thông tin đến anh/chị !";
-                        result["isFlag"] = true;
-                    } else if (translatePhoneProperty == "companyName") {
-                        result["message"] = "Chào anh/chị ! Dạ sản phẩm " + phone_name + " là máy của hãng " + getCompanyName(phone_name) + " . Thông tin đến anh/chị !";
-                        result["isFlag"] = true;
-                    } else if (translatePhoneProperty.search('configure') != -1) {
-                        result["message"] = "Chào anh/chị ! Dạ em kiểm tra thì thấy sản phẩm " + phone_name + " có cấu hình là Chip " + jsonPhone.chipset + " , CPU: " + jsonPhone.cpu + " , GPU: " + jsonPhone.gpu + " , RAM: " + jsonPhone.ram + " . Thông tin đến anh/chị !";
-                        result["isFlag"] = true;
-                    }else if (translatePhoneProperty == "warranty") {
-                        result["message"] = "Chào anh/chị. Dạ hiện sản phẩm " + phone_name + " hỗ trợ Bảo hành chính hãng 12 tháng và 1 đổi 1 trong vòng 1 tháng nếu sản phẩm có lỗi từ nhà sản xuất. Thông tin đến anh/chị";
-                        result["isFlag"] = true;
-                    } else {
-                        result["message"] = "Chào anh/chị. Sau quá trình kiểm tra dữ liệu của hệ thống bên em thì không đủ thông tin để trả lời cho câu hỏi này.Em vừa tham khảo qua google thì có thông tin như sau.";
-                        result["isFlag"] = false;
-                    }
-                    return result;                        
+                    } else if (__searchPropertyValue === false) {
+                        //  special case handling
+                        if (translatePhoneProperty == "isAvailable") {
+                            result["message"] = "Chào anh/chị. Hiện tại sản phẩm Điện thoại " + phone_name + " bên em còn hàng đó ạ. Giá của máy là " + jsonPhone.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' }) + " . Anh/chị có thể tham khảo nha. Thông tin đến anh/chị";
+                            result["isFlag"] = true;
+                        } else if (translatePhoneProperty == "checkNew") {
+                            result["message"] = "Chào anh/chị. Hiện tại bên em chỉ kinh doanh điện thoại mới nguyên seal, chính hãng Việt Nam ạ. Bên em không có kinh doanh máy cũ. Thông tin đến anh/chị";
+                            result["isFlag"] = true;
+                        } else if (translatePhoneProperty == "discount") {
+                            result["message"] = "Chào anh/chị. Dạ hiện sản phẩm Điện thoại " + phone_name + ' bên em đang có chương trình khuyến mãi. Giá hiện tại là ' + (jsonPhone.price).toLocaleString('it-IT', { style: 'currency', currency: 'VND' }) + '. Giảm thêm 5% (' + ((jsonPhone.price * 5) / 100).toLocaleString('it-IT', { style: 'currency', currency: 'VND' }) + ') cho khách hàng mua online có sinh nhật trong tháng này ạ. Xin thông tin đến anh/chị';
+                            result["isFlag"] = true;
+                        } else if (translatePhoneProperty == "paperInstallment") {
+                            result["message"] = "Chào anh/chị ! Dạ nếu anh/chị đủ 20 - 60 tuổi, có CMND và Hộ khẩu hoặc CMND và Bằng lái xe thì anh/chị có thể mua trả góp được rồi anh/chị nha, nếu anh/chị cần bên em hỗ trợ gì thêm anh/chị có thể phản hồi bên dưới anh/chị nhé. Thông tin đến anh/chị !";
+                            result["isFlag"] = true;
+                        } else if (translatePhoneProperty == "companyName") {
+                            result["message"] = "Chào anh/chị ! Dạ sản phẩm " + phone_name + " là máy của hãng " + getCompanyName(phone_name) + " . Thông tin đến anh/chị !";
+                            result["isFlag"] = true;
+                        } else if (translatePhoneProperty.search('configure') != -1) {
+                            result["message"] = "Chào anh/chị ! Dạ em kiểm tra thì thấy sản phẩm " + phone_name + " có cấu hình là Chip " + jsonPhone.chipset + " , CPU: " + jsonPhone.cpu + " , GPU: " + jsonPhone.gpu + " , RAM: " + jsonPhone.ram + " . Thông tin đến anh/chị !";
+                            result["isFlag"] = true;
+                        } else if (translatePhoneProperty == "warranty") {
+                            result["message"] = "Chào anh/chị. Dạ hiện sản phẩm " + phone_name + " hỗ trợ Bảo hành chính hãng 12 tháng và 1 đổi 1 trong vòng 1 tháng nếu sản phẩm có lỗi từ nhà sản xuất. Thông tin đến anh/chị";
+                            result["isFlag"] = true;
+                        } else {
+                            result["message"] = "Chào anh/chị. Sau quá trình kiểm tra dữ liệu của hệ thống bên em thì không đủ thông tin để trả lời cho câu hỏi này.Em vừa tham khảo qua google thì có thông tin như sau.";
+                            result["isFlag"] = false;
+                        }
+                        return result;
                     }
                 }
                 // case 2
@@ -532,39 +512,30 @@ async function ActionWhat(phone_name, phone_property, phone_property_value) {
 
                 // tìm từ đồng nghĩa
                 var translatePhoneProperty = translateProperty(phone_property, jsonTranslate);
-                var translatePhonePropertyValue =translateProperty(phone_property_value, jsonTranslate);
+                var translatePhonePropertyValue = translateProperty(phone_property_value, jsonTranslate);
                 // kiểm tra dữ liệu
-                if (translatePhonePropertyValue == "BatteryCalculator")
-                {
-                    if (translatePhoneProperty == "battery_technology")
-                    {
-                            var chargeTime = calBatteryChargingTime(jsonPhone);
-                            result["message"] = "Chào anh/chị. Dạ theo em kiểm tra sản phẩm " + phone_name + " có thể sạc đầy pin trong khoảng " + chargeTime + " anh/chị nhé. Thông tin đến anh/chị";
-                            result["isFlag"] = true;
+                if (translatePhonePropertyValue == "BatteryCalculator") {
+                    if (translatePhoneProperty == "battery_technology") {
+                        var chargeTime = calBatteryChargingTime(jsonPhone);
+                        result["message"] = "Chào anh/chị. Dạ theo em kiểm tra sản phẩm " + phone_name + " có thể sạc đầy pin trong khoảng " + chargeTime + " anh/chị nhé. Thông tin đến anh/chị";
+                        result["isFlag"] = true;
+                    } else {
+                        var resultBatteryUsageTime = calBatteryUsageTime(jsonPhone);
+                        result["message"] = "Chào anh/chị. Dạ sản phẩm " + phone_name + " có thể sử dụng trong khoảng " + resultBatteryUsageTime + " tuỳ độ sáng màn hình, kết nối, tác vụ,... anh/chị nhé. Thông tin đến anh/chị."
+                        result["isFlag"] = true;
                     }
-                    else{
-                            var resultBatteryUsageTime = calBatteryUsageTime(jsonPhone);
-                            result["message"] = "Chào anh/chị. Dạ sản phẩm " + phone_name + " có thể sử dụng trong khoảng " + resultBatteryUsageTime + " tuỳ độ sáng màn hình, kết nối, tác vụ,... anh/chị nhé. Thông tin đến anh/chị."
-                            result["isFlag"] = true;
-                    }
-                }
-                else if (jsonPhone[translatePhoneProperty])
-                {
+                } else if (jsonPhone[translatePhoneProperty]) {
                     var __findValueInKey = jsonPhone[translatePhoneProperty].toLowerCase().includes(translatePhonePropertyValue.toString().toLowerCase());
-                }
-                else
-                {
+                } else {
                     result["message"] = "Chào anh/chị. Sau quá trình kiểm tra dữ liệu của hệ thống bên em thì bên em không đủ yếu tố để trả lời câu hỏi của anh/chị. Mong anh/chị thông cảm giúp bên em. Em vừa tham khảo google thì có thông tin như sao"
-                    result["isFlag"] = false; 
+                    result["isFlag"] = false;
                 }
 
                 // tìm value trong keyProperty
-                if (__findValueInKey)
-                {
+                if (__findValueInKey) {
                     result["message"] = "Chào anh/chị. Sau quá trình em kiểm tra thì thấy máy " + phone_name + " có " + phone_property + " hỗ trợ " + phone_property_value;
                     result["isFlag"] = true;
-                }
-                else if (__findValueInKey === false){
+                } else if (__findValueInKey === false) {
                     result["message"] = "Chào anh/chị. Sau quá trình em kiểm tra thì thấy " + phone_property + " chỉ có " + jsonPhone[translatePhoneProperty] + " và không hỗ trợ " + phone_property_value;
                     result["isFlag"] = true;
                 }
@@ -587,12 +558,12 @@ async function ActionWhat(phone_name, phone_property, phone_property_value) {
         return result;
     }).catch(function(err) {
         if (err) console.log(err);
-        throw err; 
+        throw err;
     })
 
 }
 
-router.post('/what', (req, res, next) =>{
+router.post('/what', (req, res, next) => {
     var PhoneName = req.body.PhoneName;
     var PhoneProperty = req.body.PhoneProperty;
     var PhonePropertyValue = req.body.PhonePropertyValue;

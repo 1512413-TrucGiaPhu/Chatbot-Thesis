@@ -19,13 +19,13 @@ entities:
 - city
 - phone_name
 - phone_property
-- phone_condition
+- phone_property_value
 slots:
-  phone_condition:
-    type: text
   phone_name:
     type: text
   phone_property:
+    type: text
+  phone_property_value:
     type: text
   requested_slot:
     type: unfeaturized
@@ -35,7 +35,7 @@ responses:
   utter_ask_phone_property:
   - text: Anh/Chị cung cấp giúp em tính năng hoặc tên bộ phận của điện thoại mình
       cần hỏi ạ
-  utter_ask_phone_condition:
+  utter_ask_phone_property_value:
   - text: Anh/Chị cung cấp giúp em tính năng của điện thoại với ạ
   utter_cheer_up:
   - image: http://res.cloudinary.com/xitun1233/image/upload/v1589022376/qc03nzphhf0kekqjcbzk.png
@@ -69,7 +69,7 @@ actions:
 - action_answer_yes_no
 - utter_ask_phone_name
 - utter_ask_phone_property
-- utter_ask_phone_condition
+- utter_ask_phone_property_value
 - utter_cheer_up
 - utter_did_that_help
 - utter_goodbye
