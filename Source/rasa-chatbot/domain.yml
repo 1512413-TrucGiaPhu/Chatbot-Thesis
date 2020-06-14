@@ -1,0 +1,61 @@
+intents:
+  - greet
+  - ask_what
+  - ask_yes_no
+  - ask_compare
+  - thanks
+  - inform
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+
+actions:
+  - action_answer_what
+  - action_answer_yes_no
+  - action_answer_compare
+
+entities:
+  - phone_name
+  - phone_property
+
+slots:
+  phone_name:
+    type: text
+  phone_property:
+    type: text
+
+responses:
+  utter_greet:
+  - text: Xin chào Anh/Chị. Em là bot. Em có thể giúp được gì cho anh/chị?
+
+  utter_ask_phone_property:
+  - text: Anh/Chị cung cấp giúp em tính năng hoặc tên bộ phận của điện thoại mình cần hỏi ạ
+
+  utter_can_we_help:
+  - text: Dạ anh/chị có muốn hỏi thêm thông tin gì nữa không ạ?
+
+  utter_thanks:
+  - text: Dạ, rất vui được hỗ trợ anh chị ạ.
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

@@ -2,6 +2,7 @@ import { AuthGuardService } from './auth-guard.service';
 import { DataService } from './data.service';
 import { RestApiService } from './rest-api.service';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +26,9 @@ import { ProductComponent } from './product/product.component';
 import { SearchComponent } from './search/search.component';
 import { CartComponent } from './cart/cart.component';
 import { ChatboxComponent } from './chatbox/chatbox.component';
+import { PhoneCompareComponent } from './phone-compare/phone-compare.component';
+
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -43,15 +47,19 @@ import { ChatboxComponent } from './chatbox/chatbox.component';
     ProductComponent,
     SearchComponent,
     CartComponent,
-    ChatboxComponent
+    ChatboxComponent,
+    PhoneCompareComponent,
+    
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DropdownModule
   ],
   providers: [RestApiService, DataService, AuthGuardService],
   bootstrap: [AppComponent]

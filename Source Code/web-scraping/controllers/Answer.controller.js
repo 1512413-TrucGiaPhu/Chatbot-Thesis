@@ -194,8 +194,12 @@ module.exports.QueryMongo = function(req, res) {
 
     Phone.find({ name: new RegExp(PhoneName, "i"), [mongo_property]: { $exists: true } },
         function(err, result) {
-            if (err) res.send(err);
-            else res.send(result[0]);
+            if (err) {
+                res.send(err);
+            }
+            else {
+                res.send(result[0]);
+            }
         }
     );
 
@@ -208,7 +212,6 @@ module.exports.queryMongoProperty = function(req, res) {
     var mongo_property = translateProperty(PhoneProperty, jsonTranslate);
     res.status(200).json(mongo_property);
 };
-
 
 
 jsonCondition = {
@@ -305,17 +308,14 @@ async function ActionYesNo(phone_name, phone_property, phone_condition) {
             // query by phoneName
             params = {
                 "PhoneName": phone_name,
-                "PhoneProperty": "price",
                 "MongoProperty": "price"
             }
 
-            // call api query database
+            // call api query database -> return whole phone data
             const response = await axios.post('http://localhost:3000/answer/query', params)
             if (response.data) {
                 jsonPhone = response.data;
             } else {
-                `
-            `
                 result["message"] = "Chào anh/chị. Em vừa kiểm tra thì hệ thống bên em không có thông tin của mẫu điện thoại " + phone_name + " . Anh/chị giúp em kiểm tra lại tên của điện thoại với ạ. Thông tin đến anh/chị";
                 result["isFlag"] = true;
                 return result;
@@ -323,6 +323,7 @@ async function ActionYesNo(phone_name, phone_property, phone_condition) {
 
 
             // case 1
+            // 
             if (!phone_property && phone_condition) {
 
                 var translateCondition = TranslateCondition(jsonCondition, phone_condition);
@@ -454,13 +455,15 @@ async function ActionYesNo(phone_name, phone_property, phone_condition) {
         }
     };
 
-    return findResult().then(function(res) {
+    return findResult().then(res => {
         // console.log(res);
         result = res;
     }).then(() => {
         return result;
-    }).catch(function(err) {
-        if (err) console.log(err);
+    }).catch(err => {
+        if (err) {
+            console.log(err);
+        }
         throw err;
     })
 
