@@ -34,7 +34,7 @@ import { environment } from '../../environments/environment';
     userInput = "";
 
     constructor(
-        public data: DataService, 
+        public data: DataService,
         private rest: RestApiService,
         private ref: ChangeDetectorRef
         ) { }
@@ -42,7 +42,7 @@ import { environment } from '../../environments/environment';
     ngOnInit(): void {
 
     }
-    
+
     appendMessage(userInput: any) {
         if (userInput) {
             this.messageList.push({ type: "text", content: userInput, from: "user" });
@@ -64,9 +64,22 @@ import { environment } from '../../environments/environment';
         try {
             this.isSendingRequest = true;
             const result: any = await this.rest.sendMessageChatbot({ message: userInput });
-            console.log(result)
-            this.messageList[this.messageList.length - 1].content = result[0].text;
-            this.messageList[this.messageList.length - 1].type = "text";
+            console.log(result);
+            console.log(this.messageList.length);
+            console.log(this.messageList);
+            if (result.length <= 2)
+            {
+              this.messageList[this.messageList.length - 1].content = result[0].text;
+              this.messageList[this.messageList.length - 1].type = "text";
+            }
+            // Trường hợp có img & text
+            else
+            {
+              this.messageList[this.messageList.length - 1].content = result[0].text;
+              this.messageList[this.messageList.length - 1].type = "text";
+
+              this.messageList.push({ type: "image", content: result[1].image, from: "bot" });
+            }
         }
         catch {
             this.messageList[this.messageList.length - 1].content = "There is problem communicating to server";
