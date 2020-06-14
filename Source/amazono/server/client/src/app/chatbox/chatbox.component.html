@@ -1,6 +1,7 @@
 <div class="chatbox-holder">
 
-    <img class="chatbox-icon" src="https://img.icons8.com/fluent/96/000000/chat.png" [hidden]="displayChatbox" (click)="displayChatbox = !displayChatbox"/>
+    <img class="chatbox-icon" src="https://img.icons8.com/fluent/96/000000/chat.png" [hidden]="displayChatbox"
+        (click)="displayChatbox = !displayChatbox" />
 
     <div class="card chatbox-content" [hidden]="!displayChatbox">
         <ul class="list-group ">
@@ -8,26 +9,46 @@
                 Amazono Chatbot
             </h5>
             <div id="chatbox-messages">
-                <div  *ngFor="let message of messageList; let messageIndex = index">
-                    <li class="list-group-item">
-                        <div *ngIf="isSendingRequest && (message.content == null)">
-                            <!-- Three bouncing dots -->
-                            <div class="spinner">
-                                <div class="bounce1"></div>
-                                <div class="bounce2"></div>
-                                <div class="bounce3"></div>
+                <div *ngFor="let message of messageList" [ngStyle]="{'display': 'flex', 'justify-content': (message.from === 'bot' ? 'flex-end' : '')}">
+                    <ng-template [ngIf]="message.from === 'bot'" [ngIfElse]="fromUser">
+                        <div [ngSwitch]="message.type">
+                            <div *ngSwitchCase="'loading'">
+                                <div class="spinner">
+                                    <div class="bounce1"></div>
+                                    <div class="bounce2"></div>
+                                    <div class="bounce3"></div>
+                                </div>
+                            </div>
+                            <div *ngSwitchCase="'text'">
+                                <li class="list-group-item">
+                                    {{ message.content }}
+                                </li>
+                            </div>
+                            <div *ngSwitchCase="'image'">
+                                <img [src]="message.content" class="img-fluid rounded">
                             </div>
                         </div>
-                        {{ message.content }}
-                    </li>
+
+                        <img src="assets/img/botAvatar.png" class="chat-avatar ml-2">
+                    </ng-template>
+
+                    <ng-template #fromUser>
+                        <img src="assets/img/userAvatar.jpg" class="chat-avatar mr-2">
+                        <li class="list-group-item">
+                            {{ message.content }}
+                        </li>
+                    </ng-template>
                 </div>
             </div>
         </ul>
 
         <div class="input-group mb-3 card-footer">
-            <input (keydown.enter)="appendMessage(userInput)" [(ngModel)]="userInput" type="text" class="form-control" id="user-input" placeholder="Chat with our chatbot" aria-label="Chat with our chatbot" aria-describedby="button-addon2">
+            <input (keydown.enter)="appendMessage(userInput)" [(ngModel)]="userInput" type="text" class="form-control"
+                id="user-input" placeholder="Chat with our chatbot" aria-label="Chat with our chatbot"
+                aria-describedby="button-addon2">
             <div class="input-group-append">
-                <button class="btn btn-dark" type="button" id="button-addon2" (click)="appendMessage(userInput)">Send</button>
+                <button class="btn btn-dark" type="button" id="button-addon2"
+                    (click)="appendMessage(userInput)">Send</button>
             </div>
         </div>
     </div>

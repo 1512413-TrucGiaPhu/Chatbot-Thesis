@@ -1,13 +1,57 @@
 <table class="table table-striped table-hover container mt-4">
     <tbody>
+        <!-- First row of table contains image or dropdown to choose phone -->
         <tr class="row border rounded bg-white">
             <th class="col-2"></th>
-            <td class="col border text-center" *ngFor="let item of phoneList"><img [src]="item.image"></td>
+            <!-- Check if we have 3 phones or not -->
+            <ng-template [ngIf]="phoneList.length === 3" [ngIfElse]="notFull">
+                <td class="col border text-center" *ngFor="let phone of phoneList; let phoneIndex = index">
+                    <img [src]="phone.image" class="pointer">
+                    <i (click)="phoneList.splice(phoneIndex,1)" class="pi pi-times position-absolute pointer" style="font-size: 3em" ></i>
+                </td>
+            </ng-template>
+            <ng-template #notFull>
+                <!-- Section for first phone -->
+                <td class="col-4 border text-center">
+                    <img *ngIf="phoneList[0]" [src]="phoneList[0]['image']" class="pointer">
+                    <i (click)="phoneList.splice(0,1);" *ngIf="phoneList[0]" class="pi pi-times position-absolute pointer" style="font-size: 3em"></i>
+                    <div *ngIf="!phoneList[0]">
+                        <h5>Choose a phone</h5>
+                        <p-dropdown [options]="phoneNames" placeholder="Select" [(ngModel)]="selectedPhone0" filter="true" (onChange)="onDropdownClick($event.value, 0)"></p-dropdown>
+                    </div>
+                </td>
+                <!-- Section for second phone -->
+                <td class="col-4 border text-center">
+                    <img *ngIf="phoneList[1]" [src]="phoneList[1]['image']" class="pointer">
+                    <i (click)="phoneList.splice(1,1);" *ngIf="phoneList[1]" class="pi pi-times position-absolute pointer" style="font-size: 3em"></i>
+                    <div *ngIf="!phoneList[1]">
+                        <h5>Choose a phone</h5>
+                        <p-dropdown [options]="phoneNames" placeholder="Select" [(ngModel)]="selectedPhone1" filter="true" (onChange)="onDropdownClick($event.value, 1)"></p-dropdown>
+                    </div>
+                </td>
+                <!-- Add more phone section -->
+                <th class="col-2" [hidden]="phoneList.length == 3 || phoneList.length == 1 || phoneList.length == 0">
+                    <h5>Add more phone</h5>
+                    <p-dropdown [options]="phoneNames" placeholder="Select" [(ngModel)]="selectedPhone2" filter="true" (onChange)="onDropdownClick($event.value, 2)"></p-dropdown>
+                </th>
+            </ng-template>
         </tr>
+
+        <!-- Following rows of table, display phone's data -->
         <tr class="row border rounded" *ngFor="let prop of phoneKeys">
-            <th class="col-2">{{prop}}</th>
-            <td class="col" *ngFor="let phone of phoneList">{{phone[prop]}}</td>
+            <th class="col-2">{{translateProps[prop]}}</th>
+            <ng-template [ngIf]="phoneList.length === 3" [ngIfElse]="notFullBody">
+                <td class="col" *ngFor="let phone of phoneList">{{phone[prop]}}</td>
+            </ng-template>
+            <ng-template #notFullBody>
+                <td class="col-4 border">
+                    {{phoneList[0] ? phoneList[0][prop]: ''}}
+                </td>
+                <td class="col-4 border">
+                    {{phoneList[1] ? phoneList[1][prop]: ''}}
+                </td>
+                <th class="col-2" [hidden]="phoneList.length === 1"></th>
+            </ng-template>
         </tr>
     </tbody>
-
 </table>
