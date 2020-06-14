@@ -13,10 +13,10 @@ cloudinary.config({
     api_secret: "V9h9XGwIlGc9GYA0IjzrtUUY68Q"
 });
 
-mongoose
-    .connect(dbPhone, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
-    .then(() => console.log("DBPhone Connected"))
-    .catch(err => console.log(err));
+// mongoose
+//     .connect(dbPhone, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+//     .then(() => console.log("DBPhone Connected"))
+//     .catch(err => console.log(err));
 
 
 // api search keyword in google
