@@ -16,7 +16,6 @@ intents:
 - thank
 - ask_yes_no
 - ask_compare
-- ras
 entities:
 - city
 - phone_name
