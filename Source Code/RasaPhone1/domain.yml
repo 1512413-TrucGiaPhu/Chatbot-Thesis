@@ -15,6 +15,8 @@ intents:
 - out_of_scope
 - thank
 - ask_yes_no
+- ask_compare
+- ras
 entities:
 - city
 - phone_name
@@ -51,12 +53,12 @@ responses:
   utter_iamabot:
   - text: I am a bot, powered by Rasa.
   utter_question:
-  - text: Dạ anh/chị có muốn hỏi thêm thông tin gì nữa không ạ?
-    buttons:
-    - title: Có
-      payload: /affirm
-    - title: Không
-      payload: /deny
+  - buttons:
+    - payload: /affirm
+      title: Có
+    - payload: /deny
+      title: Không
+    text: Dạ anh/chị có muốn hỏi thêm thông tin gì nữa không ạ?
   utter_thank:
   - text: Dạ, em cảm ơn anh/chị đã tin tưởng bên em.
   utter_affirm:
@@ -67,6 +69,7 @@ actions:
 - action_answer_what
 - action_default_ask_affirmation
 - action_answer_yes_no
+- action_answer_compare
 - utter_ask_phone_name
 - utter_ask_phone_property
 - utter_ask_phone_property_value

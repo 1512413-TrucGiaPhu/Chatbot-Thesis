@@ -13,7 +13,7 @@ require('./models/Review');
 const Phone = mongoose.model('phones');
 const Review = mongoose.model('reviews')
 console.log(keys);
-mongoose.connect('mongodb://nghia:zxc123@ds137581.mlab.com:37581/phone-list', { useNewUrlParser: true })
+mongoose.connect('mongodb://phu:abc123@ds121089.mlab.com:21089/amazonowebapplication', { useNewUrlParser: true })
     .then(() => console.log('MongoDB connected'))
     .catch((error) => console.log(error));
 

@@ -138,5 +138,8 @@
       }
     }
   },
-  "defaultProject": "AngularAmazono"
+  "defaultProject": "AngularAmazono",
+  "cli": {
+    "analytics": "c44e03ce-d697-4428-99ff-443216978f46"
+  }
 }

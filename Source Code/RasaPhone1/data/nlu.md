@@ -214,6 +214,31 @@
 - MOBELL M389 Có [ghi âm](phone_property) cuộc gọi ko ạ
 - [Masstel IZI 280](phone_name) có [màu đen](phone_property) kg shop
 
+## intent:ask_compare
+- Giúp em so sánh [Realme 5 Pro]{"entity": "phone_name", "role": "first"} vs [Realme 6]{"entity": "phone_name", "role": "second"} với ạ
+- [Xiaomi Redmi 8]{"entity": "phone_name", "role": "first"} với [Xiaomi Redmi 7]{"entity": "phone_name", "role": "second"} con nào [chơi game](phone_property) ngon hơn?
+- [Xiaomi Redmi 8]{"entity": "phone_name", "role": "first"} với con [Samsung Galaxy A10s]{"entity": "phone_name", "role": "second"} con nào chơi [liên quân](phone_property) tốt hơn ạ?
+- Giữa [Samsung Galaxy A51]{"entity": "phone_name", "role": "first"} với [Samsung Galaxy A50s]{"entity": "phone_name", "role": "second"} thì cái nào tốt hơn nhỉ
+- [Samsung Galaxy A51]{"entity": "phone_name", "role": "first"} với [BlackBerry KEYone]{"entity": "phone_name", "role": "second"} cái nào [chơi game](phone_property) xem phim mượt hơn vậy
+- [Huawei P30 Lite]{"entity": "phone_name", "role": "first"} và [Xiaomi Note 8 Pro]{"entity": "phone_name", "role": "second"} cái nào đẹp và dùng tốt hơn ạ, xin Qtv cho mình xin cái so sánh
+- [Xiaomi Redmi Note 8 Pro]{"entity": "phone_name", "role": "first"} với cái [Xiaomi Mi 9 SE]{"entity": "phone_name", "role": "second"} cái nào [chơi game](phone_property) lướt web mượt hơn vậy
+- Máy [Realme 6 Pro]{"entity": "phone_name", "role": "first"} và [Realme 5 Pro]{"entity": "phone_name", "role": "second"} cái nào [chơi game](phone_property) ngon hơn
+- [Realme 5]{"entity": "phone_name", "role": "first"} với [Xiaomi Redmi Note 8]{"entity": "phone_name", "role": "second"} cái nào nhỉnh hơn ạ
+- [Samsung Galaxy A30s]{"entity": "phone_name", "role": "first"} và [Samsung Galaxy A20s]{"entity": "phone_name", "role": "second"} vậy nên chọn máy nào
+- [OPPO A7]{"entity": "phone_name", "role": "first"} vs [OPPO A5s]{"entity": "phone_name", "role": "second"} chip nào [chơi game](phone_property) mượt hơn ạ
+- [OPPO A5s]{"entity": "phone_name", "role": "first"} và [Samsung Galaxy A30s]{"entity": "phone_name", "role": "second"} chip nào [chơi game](phone_property) mượt ạ
+- [OPPO A5s]{"entity": "phone_name", "role": "first"} với [Vivo Y12]{"entity": "phone_name", "role": "second"} nào ngon hơn anh
+- [Xiaomi Redmi 7]{"entity": "phone_name", "role": "first"} với [Realme 5]{"entity": "phone_name", "role": "second"} thì con nào chiến [game](phone_property) ngon hơn ạ
+- [OPPO A1K]{"entity": "phone_name", "role": "first"} so với [Vivo Y19]{"entity": "phone_name", "role": "second"} thì cái nào [chơi game](phone_property) khỏe hơn
+- [OPPO A1K]{"entity": "phone_name", "role": "first"} này [chơi game](phone_property) khỏe hơn [OPPO A31]{"entity": "phone_name", "role": "second"} ko ạ
+- [Vivo Y11]{"entity": "phone_name", "role": "first"} với [Xiaomi Redmi 8]{"entity": "phone_name", "role": "second"} con nào hơn ạ
+- [Vivo Y11]{"entity": "phone_name", "role": "first"} này với [Samsung Galaxy A10s]{"entity": "phone_name", "role": "second"} cái nào tốt hơn
+- [Realme C2]{"entity": "phone_name", "role": "first"} với [Vivo Y11]{"entity": "phone_name", "role": "second"} cái nào tốt hơn ạ
+- Cho em hỏi [cấu hình](phone_property) của [iPhone 8 Plus]{"entity": "phone_name", "role": "first"} so với [iPhone SE]{"entity": "phone_name", "role": "second"} với ạ
+- Cho em hỏi [cấu hình](phone_property) của [iPhone 8 Plus]{"entity": "phone_name", "role": "first"} và [iPhone 7 Plus]{"entity": "phone_name", "role": "second"} với ạ
+- Cho em hỏi [cấu hình](phone_property) của [iPhone 11]{"entity": "phone_name", "role": "first"} và [iPhone Xs Max]{"entity": "phone_name", "role": "second"}
+
+
 
 ## intent:inform
 - Tôi muốn hỏi thông tin của điện thoại

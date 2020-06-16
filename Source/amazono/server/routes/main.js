@@ -181,7 +181,7 @@ router.get('/categories/:id', (req, res, next) => {
   router.get('/productsearch/', async (req, res) => {
     // extract param:
     let queryName = req.query.name;
-    Product.findOne({ title: queryName })
+    Product.findOne({ title: new RegExp(queryName, "i") })
       .exec()
       .then(product => {
         res.json({

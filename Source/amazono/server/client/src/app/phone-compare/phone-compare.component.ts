@@ -85,6 +85,7 @@ export class PhoneCompareComponent implements OnInit {
                 searchEndpointArr.push(() => {`${this.BACKEND_URL}/productsearch/?name=${val}`});
                 const result: any = await this.rest.get(`${this.BACKEND_URL}/productsearch/?name=${val}`);
                 this.phoneList.push(result.product);
+                console.log(result.product);
             })
         })
 

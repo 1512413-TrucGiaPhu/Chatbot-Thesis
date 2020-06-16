@@ -91,3 +91,8 @@
     - action_answer_yes_no
     - reset_slots
     - utter_question
+
+## New Story Test ActionCompare
+* ask_compare
+  - action_answer_compare
+  - utter_question
