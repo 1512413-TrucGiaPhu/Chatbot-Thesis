@@ -16,13 +16,9 @@ export class AuthGuardService implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (localStorage.getItem('token')) {
       // allow to access the profile route and block access the register route
-      return state.url.startsWith('/profile')
-      ? true
-      : (this.router.navigate(['/']), false);
+      return state.url.startsWith('/profile') ? true : (this.router.navigate(['/']), false);
     } else {
-      return state.url.startsWith('/profile')
-      ? (this.router.navigate(['/']), false)
-      : true;
+      return state.url.startsWith('/profile') ? (this.router.navigate(['/']), false) : true;
     }
   }
 }

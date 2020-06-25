@@ -6,7 +6,9 @@ const cors = require("cors");
 const config = require("./config");
 
 const app = express();
+const http = require('http').createServer(app)
 const PORT = process.env.PORT || 3030;
+const io = require('socket.io')(http);
 
 const db = require("./config").mongoURI;
 
@@ -46,4 +48,37 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "/client/dist/AngularAmazono/index.html"));
 });
 
-app.listen(PORT);
+
+io.on('connection', (socket) => {
+  let roomIds = [];
+  console.log('a user connected');
+
+  socket.on('disconnect', () => {
+    console.log('a user disconnected');
+  })
+
+  socket.on('chat-message', (message) => {
+    console.log(message);
+    socket.broadcast.emit('chat-message', message);
+  })
+
+  socket.on('create-room', (roomId) => {
+    if (!roomIds.includes(roomId)) {
+      console.log(`room with id: ${roomId} has been created`)
+      socket.join(roomId);
+      roomIds.push(roomId);
+      console.log(roomIds);
+    }
+  })
+
+  socket.on('admin-chat', message => {
+    console.log(message);
+    socket.broadcast.to(message.roomId).emit('admin-chat', {from: message.roomId, content: message.content});
+  })
+  
+})
+
+// app.listen(PORT);
+http.listen(PORT, () => {
+  console.log(`app is listening on ${PORT}`);
+})

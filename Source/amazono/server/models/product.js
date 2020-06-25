@@ -54,19 +54,19 @@ ProductSchema.plugin(mongooseAlgolia, {
     }
   },
   virtuals: {
-    averageRating: function(doc) {
-      var rating = 0;
-    if (doc.reviews.length == 0) {
-      rating = 0;
-    } else {
-      doc.reviews.map((review) => {
-        rating += review.rating;
-      });
-      rating = rating / doc.reviews.length;
-    }
+    // averageRating: function(doc) {
+    // var rating = 0;
+    // if (doc.reviews.length == 0) {
+    //   rating = 0;
+    // } else {
+    //   doc.reviews.map((review) => {
+    //     rating += review.rating;
+    //   });
+    //   rating = rating / doc.reviews.length;
+    // }
 
-    return rating;
-    }
+    // return rating;
+    // }
   },
   debug: true
 })

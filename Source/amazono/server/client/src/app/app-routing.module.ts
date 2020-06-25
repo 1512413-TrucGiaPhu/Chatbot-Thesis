@@ -15,75 +15,26 @@ import { CategoriesComponent } from './categories/categories.component';
 import { MyProductsComponent } from './my-products/my-products.component';
 import { SearchComponent } from './search/search.component';
 import { PhoneCompareComponent } from './phone-compare/phone-compare.component';
+import { AdminChatComponent } from './admin-chat/admin-chat.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent
-  },
-  {
-    path: 'register',
-    component: RegistrationComponent,
-    canActivate: [AuthGuardService]
-  },
-  {
-    path: 'search',
-    component: SearchComponent
-  },
-  {
-    path: 'cart',
-    component: CartComponent
-  },
-  {
-    path: 'categories',
-    component: CategoriesComponent
-  },
-  {
-    path: 'categories/:id',
-    component: CategoryComponent
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-    canActivate: [AuthGuardService]
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent,
-    canActivate: [AuthGuardService]
-  },
-  {
-    path: 'profile/settings',
-    component: SettingsComponent,
-    canActivate: [AuthGuardService]
-  },
-  {
-    path: 'profile/address',
-    component: AddressComponent,
-    canActivate: [AuthGuardService]
-  },
-  {
-    path: 'profile/postproduct',
-    component: PostProductComponent,
-    canActivate: [AuthGuardService]
-  },
-  {
-    path: 'profile/myproducts',
-    component: MyProductsComponent,
-    canActivate: [AuthGuardService]
-  },
-  {
-    path: 'product/:id',
-    component: ProductComponent
-  },
-  {
-    path: 'phone-compare',
-    component: PhoneCompareComponent
-  },
-  {
-    path: '**',
-    redirectTo: ''
-  }
+  { path: '', component: HomeComponent},
+  { path: 'register', component: RegistrationComponent, canActivate: [AuthGuardService] },
+  { path: 'search', component: SearchComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'categories', component: CategoriesComponent },
+  { path: 'categories/:id', component: CategoryComponent },
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuardService] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
+  { path: 'profile/settings', component: SettingsComponent, canActivate: [AuthGuardService] },
+  { path: 'profile/address', component: AddressComponent, canActivate: [AuthGuardService] },
+  { path: 'profile/postproduct', component: PostProductComponent, canActivate: [AuthGuardService] },
+  { path: 'profile/myproducts', component: MyProductsComponent, canActivate: [AuthGuardService] },
+  { path: 'product/:id', component: ProductComponent },
+  { path: 'phone-compare', component: PhoneCompareComponent },
+  { path: 'admin-chat', component: AdminChatComponent },
+  { path: 'admin-chat/:id', component: AdminChatComponent },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

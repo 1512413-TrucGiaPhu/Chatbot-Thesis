@@ -23,6 +23,10 @@ export class RestApiService {
     return this.http.post(link, body, { headers: this.getHeaders()}).toPromise();
   }
 
+  put(link: string, body: any) {
+    return this.http.put(link, body, { headers: this.getHeaders()}).toPromise();
+  }
+
   sendMessageChatbot(body: any) {
     return this.http.post(this.chatbotUrl, body).toPromise();
   }

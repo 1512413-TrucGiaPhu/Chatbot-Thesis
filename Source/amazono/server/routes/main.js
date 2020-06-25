@@ -1,11 +1,13 @@
 const router = require('express').Router();
 const Category = require('../models/category');
 const Product = require('../models/product')
+const Conversation = require('../models/conversation')
 const async = require('async');
 const Review = require('../models/review');
 const stripe = require('stripe')('sk_test_Rqg4fZ6ZxWiorEXiHxJG6Jvh');
 const Order = require('../models/order');
 const checkJWT = require('../middlewares/check-jwt');
+const sendEmail = require('../middlewares/sendEmail');
 
 router.route('/categories')
     .get((req, res, next)=>{
@@ -178,9 +180,10 @@ router.get('/categories/:id', (req, res, next) => {
       });
   });
 
-  router.get('/productsearch/', async (req, res) => {
+  router.get('/productsearch', async (req, res) => {
     // extract param:
     let queryName = req.query.name;
+    console.log(req.query)
     Product.findOne({ title: queryName })
       .exec()
       .then(product => {
@@ -192,6 +195,57 @@ router.get('/categories/:id', (req, res, next) => {
       res.json({
         success: false,
         message: 'An error has occurred' + err
+      })
+    })
+  })
+
+  router.post('/conversation', (req, res) => {
+    let {userId, dialog} = req.body;
+    let conversation = new Conversation();
+    conversation.userId = userId;
+    conversation.dialog = dialog;
+    conversation.save().then(result => {
+      console.log(result);
+      // save conversation success, start to send email to admin
+
+      let adminList = ['parierone@gmail.com','lifabled@yahoo.com']
+      let content = `<h1>Chào admin</h1><p>Hiện giờ có user cần được support, click vào link: <a href="http://localhost:4200/admin-chat/${result._id}">http://localhost:4200/admin-chat/${result._id}</a> để chat với user</p>`;
+      adminList.forEach(admin => {
+        sendEmail(admin, content)
+      })
+
+      res.json({
+        success: true,
+        message: 'conversation',
+        conversation: result
+      })
+    }).catch(err => {
+      res.json({
+        success: false,
+        message: 'conversation',
+        error: err
+      })
+    })
+  })
+
+  router.put('/conversation', (req, res) => {
+    let {id, userId, dialog} = req.body;
+    console.log(req.body);
+    Conversation.findByIdAndUpdate({ _id: id }, { dialog, userId }).then(result => {
+      console.log(result);
+      res.json({ success: true, message: 'conversation', conversation: result})
+    }).catch(err => {
+      res.json({ success: false, message: 'conversation', error: err })
+    })
+
+  })
+
+  router.get('/conversations', (req, res) => {
+    Conversation.find({}, (err, conversations) =>{
+      res.json({
+        success: true,
+        message: 'conversations',
+        conversations: conversations
       })
     })
   })
