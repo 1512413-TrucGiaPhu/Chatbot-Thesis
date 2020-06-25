@@ -5,6 +5,7 @@ const Phone = require("../models/phone");
 const dbPhone = require("../configPhone").mongoURI;
 const mongoose = require("mongoose");
 const puppeteer = require("puppeteer");
+const url = require('url');
 
 // config cloudinary
 cloudinary.config({
@@ -574,4 +575,22 @@ router.post('/what', (req, res, next) => {
         res.send(resultTemp);
     })
 });
+
+router.post('/compare', (req, res, next) => {
+    var PhoneNameFirst = req.body.PhoneNameFirst;
+    var PhoneNameSecond = req.body.PhoneNameSecond;
+    var PhoneProperty = req.body.PhoneProperty;
+    var linkCompare;
+
+    if (PhoneNameFirst && PhoneNameSecond)
+    {
+        linkCompare = `http://localhost:4200/phone-compare?name1=${PhoneNameFirst}&name2=${PhoneNameSecond}`;
+    }
+
+    var message = "Chào anh/chị. Sau quá trình em kiểm tra thì thấy dữ liệu cần so sánh hơi nhiều. Vì thế, em lập ra 1 bảng so sánh chi tiết của điện thoại " 
+    + PhoneNameFirst + " và điện thoại " + PhoneNameSecond + ". Em gửi anh/chị đường link tham khảo: " + url.format(linkCompare);
+    
+    res.send({message: message});
+});
+
 module.exports = router;

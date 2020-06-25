@@ -13,20 +13,6 @@ import json
 import logging
 
 logger = logging.getLogger(__name__)
-# init
-client = MongoClient()
-
-# connect
-MONGODB_URL = "mongodb://nghia:zxc123@ds137581.mlab.com:37581/phone-list"
-client = MongoClient(MONGODB_URL, connectTimeoutMS=30000)
-
-# getting a database
-myDB = client["phone-list"]
-
-# getting a collection
-myCollection = myDB['phones']
-
-
 
 
 class AskWhatAction(Action):
@@ -93,6 +79,28 @@ class AskYesNoAction(Action):
         # Send responses back to the user
         dispatcher.utter_message(text=message,image=ImageLink)
         return [AllSlotsReset()]
+
+class AskCompareAction(Action):
+    
+    def name(self) -> Text:
+        return "action_answer_compare"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict]:
+
+        # lấy các entities
+        entityPhoneName = tracker.get_latest_entity_values("phone_name")
+        phone_name_first = next(entityPhoneName)
+        phone_name_second = next(entityPhoneName)
+        phone_property = tracker.get_slot("phone_property")
+    
+        dataPhone = {'PhoneNameFirst': phone_name_first,'PhoneNameSecond':phone_name_second,'PhoneProperty': phone_property}
+
+        rPost = requests.post('http://localhost:3030/api/answer/compare', data=dataPhone)
+        results = rPost.json()
+        # # Send responses back to the user
+        dispatcher.utter_message(text=results["message"])
+        return [AllSlotsReset()]
+
 
 class AskForm(FormAction):
 

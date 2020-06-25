@@ -137,11 +137,8 @@ var num = [
     "iPhone Xs 64GB",
     "iPhone Xs"
 ];
-for (var i = 0; i < num.length; i++) {
-    var indexPhoneName = content.search(num[i]);
-    if (indexPhoneName != -1) {
-        var replaceValue = "[" + num[i] + "](phone_name)";
-        var res = content.replace(num[i], replaceValue);
-        console.log(res);
-    }
-}
+
+var PhoneNameFirst = "iPhone 7 Plus";
+var PhoneNameSecond = "iPhone 8 Plus"
+var linkCompare = `http://localhost:4200/phone-compare?name1=${PhoneNameFirst}&name2=${PhoneNameSecond}`;
+console.log(url.format(linkCompare));
