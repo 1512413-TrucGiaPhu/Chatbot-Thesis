@@ -5,6 +5,11 @@ $main: #232f3e;
   background-color: $main;
 }
 
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
 a {
   cursor : pointer;
 }

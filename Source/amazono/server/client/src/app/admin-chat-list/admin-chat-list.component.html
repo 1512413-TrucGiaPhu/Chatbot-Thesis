@@ -1,0 +1,9 @@
+<p-listbox [options]="convList" [(ngModel)]="selectedConv" optionLabel="created"  (onClick)="displayChatList($event.value)">
+  <ng-template let-item pTemplate="item">
+    <div class="ui-helper-clearfix">
+      <img src="assets/img/userAvatar.jpg" style="display:inline-block;margin-left:15px" width="48">
+      <!-- <span style="float:right;margin:20px 10px 0 0">{{item.value._id }}</span> -->
+      <span style="float:right;margin:20px 10px 0 0">{{item.value.created | date:'EEEE, MMMM d, y, h:mm' }}</span>
+    </div>
+  </ng-template>
+</p-listbox>

@@ -1,0 +1,11 @@
+
+<div class="row">
+  <div class="col-2" style="padding: 0px;height: 85vh; overflow-y: auto;">
+    <app-admin-chat-list #chatList [convList]="convList" (displayChat)="onDisplayChat($event)"></app-admin-chat-list>
+  </div>
+  
+  <div class="col-10 border" style="padding-left: 0px!important">
+    <app-admin-chat-detail [messageList]="messageList" (changeChatState)="onChangeChatState($event)"></app-admin-chat-detail>
+  </div>
+  
+</div>

@@ -12,17 +12,21 @@
 }
 
 #chatbox-messages {
-    height: 310px;
+    height: 502px;
     overflow-y: auto;
     overflow-x: hidden;
     padding: 10px;
 }
 
+.chat-message-highlighted {
+    background: #343a40;
+    color: #f4f4f4;
+}
+
 .chatbox-content {
-    height: 400px;
+    height: 600px;
     width: 350px;
     background-color: #e8e4e1;
-    ;
 }
 
 .card-header {
@@ -47,6 +51,20 @@
     margin-top: 15px;
     padding: .25rem 0.75rem;
     word-break: break-all;
+}
+
+.dark-button {
+    background-color: #232f3e;
+}
+
+.dark-button:hover {
+    background-color: #343a40!important;
+}
+
+.notification {
+    text-align: center;
+    display: block!important;
+    margin: auto;
 }
 
 // spinner animation for pending request to rasa server

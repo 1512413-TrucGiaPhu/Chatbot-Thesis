@@ -1,0 +1,57 @@
+.chatbox-content {
+    height: auto;
+    width: auto;
+    background-color: #e8e4e1;
+}
+
+.card-header {
+    background-color: #232f3e;
+    height: 5vh;
+    color: white;
+}
+
+.card-footer {
+    padding: 0px;
+}
+
+.chat-avatar {
+    height: 50px;
+    display: flex;
+    border-radius: 15%;
+    margin-top: 10px;
+}
+
+.list-group-item {
+    display: block;
+    margin-top: 15px;
+    padding: .25rem 0.75rem;
+    word-break: break-all;
+}
+
+.input-group {
+    z-index: 1000;
+    // position: fixed;
+    bottom: 0;
+    // padding-right: 15px;
+}
+
+#chatbox-messages {
+    height: 78vh;
+    overflow-y: auto;
+    //overflow-x: hidden;
+    padding: 10px;
+    // margin-bottom: 20px;
+}
+
+.chat-message-highlighted {
+    background: #343a40;
+    color: #f4f4f4;
+}
+
+.dark-button {
+    background-color: #232f3e;
+}
+
+.dark-button:hover {
+    background-color: #343a40!important;
+}
