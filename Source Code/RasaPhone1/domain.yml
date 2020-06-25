@@ -7,11 +7,7 @@ intents:
 - goodbye
 - affirm
 - deny
-- mood_great
-- mood_unhappy
-- bot_challenge
 - ask_what
-- search
 - out_of_scope
 - thank
 - ask_yes_no
@@ -38,19 +34,14 @@ responses:
       cần hỏi ạ
   utter_ask_phone_property_value:
   - text: Anh/Chị cung cấp giúp em tính năng của điện thoại với ạ
-  utter_cheer_up:
-  - image: http://res.cloudinary.com/xitun1233/image/upload/v1589022376/qc03nzphhf0kekqjcbzk.png
-    text: 'Here is something to cheer you up:'
   utter_did_that_help:
   - text: Điều đó có giúp được gì cho anh/chị không?
   utter_goodbye:
   - text: Tạm biệt anh/chị. Chúc anh/chị ngày mới tốt lành.
   utter_greet:
   - text: Xin chào Anh/Chị. Em là bot. Em có thể giúp được gì cho anh/chị?
-  utter_happy:
-  - text: Tuyệt vời
-  utter_iamabot:
-  - text: I am a bot, powered by Rasa.
+  - text: Dạ chào Anh/Chị. Dạ không biết mình đang cần bên em hỗ trợ mình vấn đề cụ
+      thể gì ạ?
   utter_question:
   - buttons:
     - payload: /affirm
@@ -72,12 +63,9 @@ actions:
 - utter_ask_phone_name
 - utter_ask_phone_property
 - utter_ask_phone_property_value
-- utter_cheer_up
 - utter_did_that_help
 - utter_goodbye
 - utter_greet
-- utter_happy
-- utter_iamabot
 - utter_question
 - utter_thank
 - utter_affirm

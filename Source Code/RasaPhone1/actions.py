@@ -2,7 +2,7 @@ from typing import Any, Text, Dict, List
 import requests
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.events import FollowupAction, AllSlotsReset
+from rasa_sdk.events import FollowupAction, AllSlotsReset, SlotSet
 from rasa_sdk.forms import FormAction
 from rasa_sdk.events import (EventType)
 import pymongo
@@ -78,7 +78,8 @@ class AskYesNoAction(Action):
             message =messageLasted + ". Em có tìm kiếm trên google thì thấy được kết quả. Anh/chị có thể tham khảo thử: {}".format(results['searchLink'])
         # Send responses back to the user
         dispatcher.utter_message(text=message,image=ImageLink)
-        return [AllSlotsReset()]
+        # return [AllSlotsReset()]
+        return [SlotSet("phone_property", None)]
 
 class AskCompareAction(Action):
     
@@ -89,8 +90,10 @@ class AskCompareAction(Action):
 
         # lấy các entities
         entityPhoneName = tracker.get_latest_entity_values("phone_name")
-        phone_name_first = next(entityPhoneName)
-        phone_name_second = next(entityPhoneName)
+        if (entityPhoneName):
+            phone_name_first = next(entityPhoneName)
+            phone_name_second = next(entityPhoneName)
+
         phone_property = tracker.get_slot("phone_property")
     
         dataPhone = {'PhoneNameFirst': phone_name_first,'PhoneNameSecond':phone_name_second,'PhoneProperty': phone_property}
@@ -99,7 +102,8 @@ class AskCompareAction(Action):
         results = rPost.json()
         # # Send responses back to the user
         dispatcher.utter_message(text=results["message"])
-        return [AllSlotsReset()]
+        # return [AllSlotsReset()]
+        return [SlotSet("phone_property", None)]
 
 
 class AskForm(FormAction):
@@ -110,18 +114,15 @@ class AskForm(FormAction):
     @staticmethod
     def required_slots(tracker: Tracker):
         if (not (tracker.get_slot('phone_property_value') is None)):
-            return ['phone_name', 'phone_property_value']
+            return ['phone_name', 'phone_property','phone_property_value']
         else:
             return ['phone_name', 'phone_property']
         
 
-    # def slot_mappings(self):
-    #     return {"phone_name": self.from_entity(entity="phone_name",
-    #                                            intent=[ "inform","ask_what", "ask_yes_no"]),
-    #             "phone_property": self.from_entity(entity=["phone_property"],
-    #                                                intent=[ "inform","ask_what", "ask_yes_no"]),
-    #             "phone_condition": self.from_entity(entity=["phone_condition"],
-    #                                                intent=[ "inform","ask_what", "ask_yes_no"])}
+    def slot_mappings(self):
+        return {"phone_name": [self.from_entity(entity="phone_name")],
+                "phone_property": [self.from_entity(entity="phone_property")],
+                "phone_property_value": [self.from_entity(entity="phone_property_value")]}
 
     def submit(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict]:
         phone_name = tracker.get_slot("phone_name")
