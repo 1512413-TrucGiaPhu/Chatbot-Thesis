@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const cloudinary = require("cloudinary").v2;
 const axios = require("axios");
+const Product = require('../models/product');
 const Phone = require("../models/phone");
 const dbPhone = require("../configPhone").mongoURI;
 const mongoose = require("mongoose");
@@ -121,7 +122,7 @@ var jsonTranslate = {
     "back_camera_resolution": ["camera sau",
         "cam sau",
         "độ phân giải cam sau",
-        "độ phân giải camera sau", "chụp ảnh"
+        "độ phân giải camera sau", "chụp ảnh", "chụp hình"
     ],
     "back_camera_video": ["quay phim", "quay video"],
     "back_camera_flash": ["đèn flash"],
@@ -289,7 +290,7 @@ router.post('/queryMongo', (req, res, next) => {
     var PhoneName = req.body.PhoneName;
     var mongo_property = req.body.MongoProperty;
 
-    Phone.find({ name: new RegExp(PhoneName, "i"), [mongo_property]: { $exists: true } },
+    Product.find({ title: new RegExp(PhoneName, "i"), [mongo_property]: { $exists: true } },
         function(err, result) {
             if (err) res.send(err);
             else res.send(result[0]);
@@ -582,15 +583,14 @@ router.post('/compare', (req, res, next) => {
     var PhoneProperty = req.body.PhoneProperty;
     var linkCompare;
 
-    if (PhoneNameFirst && PhoneNameSecond)
-    {
+    if (PhoneNameFirst && PhoneNameSecond) {
         linkCompare = `http://localhost:4200/phone-compare?name1=${PhoneNameFirst}&name2=${PhoneNameSecond}`;
     }
 
-    var message = "Chào anh/chị. Sau quá trình em kiểm tra thì thấy dữ liệu cần so sánh hơi nhiều. Vì thế, em lập ra 1 bảng so sánh chi tiết của điện thoại " 
-    + PhoneNameFirst + " và điện thoại " + PhoneNameSecond + ". Em gửi anh/chị đường link tham khảo: " + url.format(linkCompare);
-    
-    res.send({message: message});
+    var message = "Chào anh/chị. Sau quá trình em kiểm tra thì thấy dữ liệu cần so sánh hơi nhiều. Vì thế, em lập ra 1 bảng so sánh chi tiết của điện thoại " +
+        PhoneNameFirst + " và điện thoại " + PhoneNameSecond + ". Em gửi anh/chị đường link tham khảo: " + url.format(linkCompare);
+
+    res.send({ message: message });
 });
 
 module.exports = router;
