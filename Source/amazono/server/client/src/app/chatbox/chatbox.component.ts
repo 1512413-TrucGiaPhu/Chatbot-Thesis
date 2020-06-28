@@ -57,7 +57,7 @@ import { SocketIOChatService } from '../socketio-chat.service';
                     if (msg.content.shouldEnd) {
                         this.chatToBot = true;
 
-                        this.rest.put(`${this.BACKEND_URL}/conversation`, { id: this.conversationId, userId: null, dialog: this.messageList }).then(result => {
+                        this.rest.put(`${this.BACKEND_URL}/conversation`, { id: this.conversationId, userId: null, dialog: this.messageList, isClosedChat: true }).then(result => {
                             console.log('update conversation successfully', result)
                         }).catch(err => {
                             console.log(err)
@@ -136,11 +136,11 @@ import { SocketIOChatService } from '../socketio-chat.service';
 
     sendSocketIORequest(userInput: any) {
         this.socket.sendMessage({ roomId: this.conversationId, content: userInput});
-        // this.socket.sendMessageAll(userInput);
     }
 
     handleChatAdmin() {
         console.log(this.messageList);
+        // save the conversation, then use conversation id to create room 
         this.rest.post(`${this.BACKEND_URL}/conversation/`, { userId: null, dialog: this.messageList }).then((result:any) => {
             console.log(result);
             this.conversationId = result.conversation._id;

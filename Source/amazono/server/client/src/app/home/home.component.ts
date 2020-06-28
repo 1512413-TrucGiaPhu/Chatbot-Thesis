@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 export class HomeComponent implements OnInit {
   products: any;
   BACKEND_URL = environment.apiUrl;
+  p = 1;
 
   constructor(private data: DataService, private rest: RestApiService) {}
 

@@ -3,7 +3,7 @@
       <h5 class="mr-auto">
           Amazono
       </h5>
-      <button pButton type="button" class="ui-button-warning ui-button-raised ui-button-rounded" label="End Chat" (click)="endChat()"></button>
+      <button pButton type="button" class="ui-button-warning ui-button-raised ui-button-rounded" [disabled]="messageList?.isClosedChat" label="End Chat" (click)="endChat()"></button>
   </div>
   <div id="chatbox-messages">
       <div *ngFor="let message of dialog" [ngStyle]="{'display': 'flex', 
@@ -54,6 +54,11 @@
                 {{ message.content }}
             </li>
           </ng-template>
+
+          <div class="notification" *ngIf="message.from === 'notification'" >
+            <p class="text-muted mt-3">{{message.content}}</p>
+        </div>
+
       </div>
   </div>
 </ul>
@@ -63,7 +68,7 @@
       id="user-input" placeholder="Chat with our chatbot" aria-label="Chat with our chatbot" [disabled]="messageList?.isClosedChat || !messageList?.isJoinedChat"
       aria-describedby="button-addon2">
     <div class="input-group-append" [hidden]="messageList?.isClosedChat">
-        <button *ngIf=" messageList?.isJoinedChat" pButton class="dark-button" type="button" label='Send' (click)="appendMessage(userInput)"></button>
+        <button *ngIf="messageList?.isJoinedChat" pButton class="dark-button" type="button" label='Send' (click)="appendMessage(userInput)"></button>
         <button *ngIf="!messageList?.isJoinedChat" pButton class="dark-button" type="button" label='Join Chat' (click)="joinChat(); messageList.isJoinedChat = true"></button>
     </div>
 </div>

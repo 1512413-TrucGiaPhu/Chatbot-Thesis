@@ -228,9 +228,9 @@ router.get('/categories/:id', (req, res, next) => {
   })
 
   router.put('/conversation', (req, res) => {
-    let {id, userId, dialog} = req.body;
+    let {id, userId, dialog, isClosedChat } = req.body;
     console.log(req.body);
-    Conversation.findByIdAndUpdate({ _id: id }, { dialog, userId }).then(result => {
+    Conversation.findByIdAndUpdate({ _id: id }, { dialog, userId, isClosedChat }).then(result => {
       console.log(result);
       res.json({ success: true, message: 'conversation', conversation: result})
     }).catch(err => {

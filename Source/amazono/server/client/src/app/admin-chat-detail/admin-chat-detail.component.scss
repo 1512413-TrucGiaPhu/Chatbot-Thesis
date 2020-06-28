@@ -36,7 +36,7 @@
 }
 
 #chatbox-messages {
-    height: 78vh;
+    height: 80vh;
     overflow-y: auto;
     //overflow-x: hidden;
     padding: 10px;
@@ -54,4 +54,10 @@
 
 .dark-button:hover {
     background-color: #343a40!important;
+}
+
+.notification {
+    text-align: center;
+    display: block!important;
+    margin: auto;
 }

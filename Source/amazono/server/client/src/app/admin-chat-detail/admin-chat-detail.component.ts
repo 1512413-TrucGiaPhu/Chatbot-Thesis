@@ -8,8 +8,8 @@ import { SocketIOChatService } from '../socketio-chat.service';
 })
 export class AdminChatDetailComponent implements OnInit {
 
-  private _messageList;
-  dialog = [];
+  private _messageList; // the message list, contains dialog and conversation id
+  dialog = []; // dialog between user/bot
   userInput = "";
 
   @Input() 

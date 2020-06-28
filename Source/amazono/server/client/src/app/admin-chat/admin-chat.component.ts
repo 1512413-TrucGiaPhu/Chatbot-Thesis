@@ -27,17 +27,19 @@ export class AdminChatComponent implements OnInit {
     // remove footer and chatbox
     document.getElementsByClassName('chatbox-holder')[0].remove();
     document.getElementsByClassName('page-footer')[0].remove();
+    // get route data (conversation id)
     this.activatedRoute.params.subscribe(res => {
       console.log(res.id);
       if (res) {
         this.activatingMessageList = res.id;
       }
     });
+
     this.rest.get(`${this.BACKEND_URL}/conversations`).then((conv: any) => {
       this.convList = conv.conversations.sort((a,b) => (a.created > b.created) ? -1 : ((b.created > a.created) ? 1 : 0))
                                         .map(c => {
                                           c['isJoinedChat'] = false;
-                                          c['isClosedChat'] = false
+                                          c['isClosedChat'] = c['isClosedChat'] ? c['isClosedChat'] : false;
                                           return c;
                                         });
       console.log(this.convList);
@@ -53,7 +55,6 @@ export class AdminChatComponent implements OnInit {
           }
         }
       });
-
 
       let idArr: Array<any> = conv.conversations.map(c => c._id);
       // check param value, if match any in conversation list, then select the conversation, else select first conversation

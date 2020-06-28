@@ -14,10 +14,6 @@ export class AdminChatListComponent implements OnInit {
     if (convList) {
       this._convList = convList;
       console.log(convList);
-      // preselect first element of conversation list
-
-      // this.selectedConv = convList[0];
-      // this.displayChatList(this.selectedConv);
     }
   };
   get convList() {
@@ -37,6 +33,5 @@ export class AdminChatListComponent implements OnInit {
     this.displayChat.emit(message);
     console.log(this.selectedConv);
   }
-
 
 }

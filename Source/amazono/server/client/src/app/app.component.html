@@ -7,9 +7,7 @@
       <button class="navbar-toggler" (click)="isCollapsed = !isCollapsed">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div [ngbCollapse]="isCollapsed" style="align-items: left;" class="collapse navbar-collapse flex-column ml-3"
-        id="navbarNav">
-  
+      <div [ngbCollapse]="isCollapsed" style="align-items: left;" class="collapse navbar-collapse flex-column ml-3" id="navbarNav">
         <div class="w-100">
           <ul class="navbar-nav">
             <li class="nav-item py-4">
@@ -22,8 +20,8 @@
                 <i class="fa fa-search"></i>
               </span>
             </div>
-            <li class="nav-item ml-0 ml-md-auto py-4" ngbDropdown #dropdown="ngbDropdown">
-              <a class="nav-link dropdown-toggle" ngbDropdownToggle>
+            <li class="nav-item ml-0 ml-md-auto py-4" ngbDropdown #dropdown="ngbDropdown" >
+              <a class="nav-link dropdown-toggle" style="width: 110px;" ngbDropdownToggle>
                 <i class="fa fa-user mr-1"></i>
                 <span *ngIf="!token">Accounts</span>
                 <span *ngIf="data.user">{{ data.user.name }}</span>
@@ -43,8 +41,8 @@
                 </a>
               </div>
             </li>
-            <li class="nav-item ml-0 ml-md-2 py-4">
-              <a (click)="collapse()" routerLink="/cart" routerLinkActive="active" class="nav-link">
+            <li class="nav-item ml-0 ml-md-2 py-4" >
+              <a (click)="collapse()" routerLink="/cart" routerLinkActive="active" class="nav-link" style="width: 70px;">
                 <i class="fa fa-shopping-cart mr-1"></i>
                 Cart
                 <span *ngIf="data.cartItems" class="badge badge-warning ml-1">{{ data.cartItems }}</span>

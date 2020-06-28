@@ -4,6 +4,11 @@ import { RestApiService } from './rest-api.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 import { NgModule } from '@angular/core';
+import { NgxPaginationModule } from 'ngx-pagination';
+
+import localeVI from '@angular/common/locales/vi';
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -40,6 +45,7 @@ import { AdminChatDetailComponent } from './admin-chat-detail/admin-chat-detail.
 import { environment } from 'src/environments/environment';
 
 const config: SocketIoConfig = { url: environment.serverUrl, options: {} };
+registerLocaleData(localeVI);
 
 @NgModule({
   declarations: [
@@ -76,9 +82,15 @@ const config: SocketIoConfig = { url: environment.serverUrl, options: {} };
     DropdownModule,
     ListboxModule,
     ButtonModule,
+    NgxPaginationModule,
     SocketIoModule.forRoot(config)
   ],
-  providers: [RestApiService, DataService, AuthGuardService],
+  providers: [
+    RestApiService, 
+    DataService, 
+    AuthGuardService,
+    { provide: LOCALE_ID, useValue: 'vi' },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

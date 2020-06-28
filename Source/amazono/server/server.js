@@ -12,24 +12,21 @@ const io = require('socket.io')(http);
 
 const db = require("./config").mongoURI;
 
+const userRoutes = require("./routes/acccount");
+const mainRoutes = require("./routes/main");
+const sellerRoutes = require("./routes/seller");
+const productSearchRoutes = require("./routes/product-search");
+const answerRoutes = require("./routes/answer");
 
 mongoose
   .connect(db, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology:true })
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 
-
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan("dev"));
 app.use(cors());
-
-const userRoutes = require("./routes/acccount");
-const mainRoutes = require("./routes/main");
-const sellerRoutes = require("./routes/seller");
-const productSearchRoutes = require("./routes/product-search");
-const answerRoutes = require("./routes/answer");
 
 app.use("/api", mainRoutes);
 app.use("/api/accounts", userRoutes);
@@ -62,6 +59,7 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('chat-message', message);
   })
 
+  // create new room with id of conversation
   socket.on('create-room', (roomId) => {
     if (!roomIds.includes(roomId)) {
       console.log(`room with id: ${roomId} has been created`)
@@ -74,6 +72,11 @@ io.on('connection', (socket) => {
   socket.on('admin-chat', message => {
     console.log(message);
     socket.broadcast.to(message.roomId).emit('admin-chat', {from: message.roomId, content: message.content});
+    // leave room when admin end the conversation
+    if (message.content.shouldEnd) {
+      socket.leave(message.roomId);
+      console.log(`room with id :${message.roomId} has been left`);
+    }
   })
   
 })
