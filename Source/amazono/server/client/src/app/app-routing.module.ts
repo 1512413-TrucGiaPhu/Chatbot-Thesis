@@ -32,8 +32,8 @@ const routes: Routes = [
   { path: 'profile/myproducts', component: MyProductsComponent, canActivate: [AuthGuardService] },
   { path: 'product/:id', component: ProductComponent },
   { path: 'phone-compare', component: PhoneCompareComponent },
-  { path: 'admin-chat', component: AdminChatComponent },
-  { path: 'admin-chat/:id', component: AdminChatComponent },
+  { path: 'admin-chat', component: AdminChatComponent, canActivate: [AuthGuardService] },
+  { path: 'admin-chat/:id', component: AdminChatComponent, canActivate: [AuthGuardService] },
   { path: '**', redirectTo: '' }
 ];
 
