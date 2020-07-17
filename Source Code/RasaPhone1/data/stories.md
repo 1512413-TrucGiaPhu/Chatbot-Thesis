@@ -1,3 +1,10 @@
+## Inform
+* greet
+    - utter_greet
+* inform
+    - ask_form
+    - form{"name": "ask_form"}
+    - form{"name": null}
 ## What
 * greet
     - utter_greet

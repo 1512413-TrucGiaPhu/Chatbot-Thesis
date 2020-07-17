@@ -26,6 +26,7 @@ class AskWhatAction(Action):
         phone_name = tracker.get_slot("phone_name")
         phone_property = tracker.get_slot("phone_property")
         phone_property_value = tracker.get_slot("phone_property_value")
+        
         dataPhone = {'PhoneName': phone_name, 'PhoneProperty': phone_property, 'PhonePropertyValue': phone_property_value}
        
 
@@ -45,7 +46,8 @@ class AskWhatAction(Action):
             message =messageLasted + ". Em có tìm kiếm trên google thì thấy được kết quả. Anh/chị có thể tham khảo thử: {}".format(results['searchLink'])
         # Send responses back to the user
         dispatcher.utter_message(text=message,image=ImageLink)
-        return [AllSlotsReset()]
+        # return [AllSlotsReset()]
+        return [SlotSet("phone_property", None), SlotSet("phone_property_value", None)]
 
 
 class AskYesNoAction(Action):
@@ -79,7 +81,7 @@ class AskYesNoAction(Action):
         # Send responses back to the user
         dispatcher.utter_message(text=message,image=ImageLink)
         # return [AllSlotsReset()]
-        return [SlotSet("phone_property", None)]
+        return [SlotSet("phone_property", None), SlotSet("phone_property_value", None)]
 
 class AskCompareAction(Action):
     
@@ -95,7 +97,9 @@ class AskCompareAction(Action):
             phone_name_second = next(entityPhoneName)
 
         phone_property = tracker.get_slot("phone_property")
-    
+        print (phone_name_first)
+        print(phone_name_second)
+        print(phone_property)
         dataPhone = {'PhoneNameFirst': phone_name_first,'PhoneNameSecond':phone_name_second,'PhoneProperty': phone_property}
 
         rPost = requests.post('http://localhost:3030/api/answer/compare', data=dataPhone)
@@ -126,9 +130,10 @@ class AskForm(FormAction):
 
     def submit(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict]:
         phone_name = tracker.get_slot("phone_name")
+        
         phone_property = tracker.get_slot("phone_property")
         phone_property_value = tracker.get_slot("phone_property_value")
-
+        print (phone_property)
          # Lay danh sach intent
         intent_ranking = tracker.latest_message.get("intent_ranking", [])
         print(intent_ranking)
