@@ -22,9 +22,9 @@
                 <small class="text-muted">{{ product.category.name }}</small>
               </p> -->
             </div>
-            <div class="col-6">
+            <!-- <div class="col-6">
               <ngb-rating [(rate)]="product.averageRating" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
-            </div>
+            </div> -->
           </div>
           <hr>
           <div class="d-flex justify-content-between mb-2 phone-prop"><label>Màn hình:</label><span>{{product.display_technology + " " + product.display_resolution}}</span></div>
@@ -44,9 +44,9 @@
             </div>
           </div>
         </div>
-        <p class="lead">{{ product.description }}</p>
+        <p class="lead pb-5">{{ product.description }}</p>
       </div>
-      <div>
+      <!-- <div>
         <div class="mt-5 ml-lg-5" *ngIf="data.user">
           <h4>Reviews</h4>
           <hr>
@@ -87,7 +87,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </section>

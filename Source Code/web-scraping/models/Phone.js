@@ -7,6 +7,7 @@ const productSchema = new Schema({
     image: String,
     price: Number,
     description: String,
+    numberOfQuestions: {type: Number, default: 0},
     display_technology: String,
     display_protection: String,
     display_resolution: String,

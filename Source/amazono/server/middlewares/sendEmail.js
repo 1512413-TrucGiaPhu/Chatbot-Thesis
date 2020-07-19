@@ -5,8 +5,13 @@ module.exports = function (recipient, HTMLContent){
     let transport = nodemailer.createTransport({
         service: 'gmail',
         auth: {
+<<<<<<< HEAD
           user: 'huynhtrongnghia.htn@gmail.com',
           pass: 'haNgpHuong120712'
+=======
+          user: 'trucgiaphu@gmail.com',
+          pass: 'familigetsexy'
+>>>>>>> 16f58c98d41fcfe9bad57ff5c76670e7141b2a66
         }
     });
 

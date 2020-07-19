@@ -10,11 +10,11 @@
       <div [ngbCollapse]="isCollapsed" style="align-items: left;" class="collapse navbar-collapse flex-column ml-3" id="navbarNav">
         <div class="w-100">
           <ul class="navbar-nav">
-            <li class="nav-item py-4">
+            <!-- <li class="nav-item py-4">
               <a (click)="collapse()" routerLink="/categories" routerLinkActive="active" class="nav-link" >Categories</a>
-            </li>
+            </li> -->
             <!-- Search -->
-            <div class="input-group w-75 mx-3 py-4">
+            <div class="input-group w-100 mx-3 py-4">
               <input type="text" name="search" class="form-control" [(ngModel)]="searchTerm" (keyup.enter)="search()">
               <span id="searchBtn" class="bg-warning" (click)="search()">
                 <i class="fa fa-search"></i>
@@ -41,13 +41,13 @@
                 </a>
               </div>
             </li>
-            <li class="nav-item ml-0 ml-md-2 py-4" >
+            <!-- <li class="nav-item ml-0 ml-md-2 py-4" >
               <a (click)="collapse()" routerLink="/cart" routerLinkActive="active" class="nav-link" style="width: 95px;">
                 <i class="fa fa-shopping-cart mr-1"></i>
                 Cart
                 <span *ngIf="data.cartItems" class="badge badge-warning ml-1">{{ data.cartItems }}</span>
               </a>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>
@@ -62,8 +62,8 @@
 </main>
 
 
-<footer class="page-footer bg-main text-white p-5">
+<footer class="page-footer bg-main text-white p-3 w-100" style="bottom: 0;position: fixed;">
   <div class="container">
-    <p class="lead text-center">Copyright &copy; 2020 Amazono</p>
+    <p class="lead text-center m-0">Copyright &copy; 2020 Amazono</p>
   </div>
 </footer>
