@@ -2,15 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const puppeteer = require('puppeteer');
-const jest = require('jest');
 
-const PORT = process.env.PORT || 3030;
-const app = express();
+
 require('./models/Phone');
 
 const Product = mongoose.model('products');
 
-
+const PORT = process.env.PORT || 3030;
+const app = express();
 mongoose.connect('mongodb://phu:abc123@ds121089.mlab.com:21089/amazonowebapplication', { useNewUrlParser: true })
     .then(() => console.log('MongoDB connected'))
     .catch((error) => console.log(error));
@@ -27,7 +26,7 @@ var ListPhone = [];
     const url = 'https://www.thegioididong.com/dtdd#i:5';
     await page.goto(url);
     console.log('Page loaded');
-    
+
     const phoneListName = await page.evaluate(() => {
 
         function selector(phone) {
@@ -63,24 +62,24 @@ var ListPhone = [];
     for (var i = 0; i < phoneListName.length; i++) {
         ListPhone.push(phoneListName[i].name);
     }
-    
     ListPhone.sort()
     for (var i = 0; i < ListPhone.length; i++) {
         console.log(ListPhone[i]);
     }
 
-    let ProductArr = [];
-    let under2m = 0;
-    let from2to4m = 0;
-    let from4to7m = 0;
-    let from7to13m = 0;
-    let above13m = 0;
+    let under2m = new Map();
+    let from2to4m = new Map();
+    let from4to7m = new Map();
+    let from7to13m = new Map();
+    let above13m = new Map();
 
     for (let i = 0; i < phoneListName.length; i++) {
         const { image, name, price, url } = phoneListName[i];
-        priceTemp = price.replace('₫', '');
+
+        let priceTemp = price.replace('₫', '');
         priceTemp = priceTemp.replace('.', '');
         priceTemp = priceTemp.replace('.', '');
+
         await page.goto(url);
 
         const clickButton = await page.evaluate(() => {
@@ -145,19 +144,16 @@ var ListPhone = [];
                 var time_of_lunch = document.getElementsByClassName('g13045')[0].children[1].innerText;
             }
 
-            let description = document.querySelector('body > section > div.box_content > aside.left_content > div.boxArticle > article > h2');
-            if (!description || !description.textContent) {
-                description = document.querySelector('body > section > div.box_content > aside.left_content > div.boxArticle > article > h3').textContent;
-            } else {
-                description = description.textContent;
-            }
+            let description = document.querySelector('body > section > div.box_content > aside.left_content > div.boxArticle > article > h2') ? document.querySelector('body > section > div.box_content > aside.left_content > div.boxArticle > article > h2').textContent : "";
 
-            let numberOfQuestions = document.querySelector('#comment > div.tltCmt > div.midcmt > span').textContent.split(" ")[0];
+            let numberOfQuestions = document.querySelector('#comment > div.tltCmt > div.midcmt > span').innerText.split(" ")[0];
             if (numberOfQuestions.includes(".")) {
                 numberOfQuestions = +numberOfQuestions.split(".").join("");
-            } else {
+            } 
+            else {
                 numberOfQuestions = +numberOfQuestions;
             }
+            console.log(numberOfQuestions);
 
             let results = {
                 title: name,
@@ -217,8 +213,8 @@ var ListPhone = [];
             title: name,
             price: parseInt(priceTemp),
             image: image,
-            numberOfQuestions: getData.numberOfQuestions, 
             description: getData.description,
+            numberOfQuestions: getData.numberOfQuestions,
             display_technology: getData.display_technology,
             display_protection: getData.display_protection,
             display_resolution: getData.display_resolution,
@@ -262,36 +258,38 @@ var ListPhone = [];
             music: getData.music,
             time_of_lunch: getData.time_of_lunch
         });
-        ProductArr.push(product);
+
+
         console.log(product);
-        
-
-        // product.save();
-
-        // createSurvey
-        if (product.price < 2000000) {
-            under2m+= product.price;
-        } else if (product.price > 2000000 && product.price < 4000000) {
-            from2to4m+= product.price;
-        } else if (product.price > 4000000 && product.price < 7000000) {
-            from4to7m+= product.price;
-        } else if (product.price > 7000000 && product.price < 13000000) {
-            from7to13m+= product.price;
-        } else if (product.price > 13000000) {
-            above13m+= product.price
+        let mPrice = product.price;
+        if (mPrice < 2000000) {
+            under2m.set(product.title, product.numberOfQuestions);
+        } else if (mPrice > 2000000 && mPrice < 4000000) {
+            from2to4m.set(product.title, product.numberOfQuestions);
+        } else if (mPrice > 4000000 && mPrice < 7000000) {
+            from4to7m.set(product.title, product.numberOfQuestions);
+        } else if (mPrice > 7000000 && mPrice < 13000000) {
+            from7to13m.set(product.title, product.numberOfQuestions);
+        } else if (mPrice > 13000000) {
+            above13m.set(product.title, product.numberOfQuestions);
         }
+
+        product.save();
+
+
     }
 
-
+    console.log("under2m", under2m);
+    console.log("under2m total questions: ", [...under2m.values()].reduce((a, b) => a + b, 0));
+    console.log("from2to4m", from2to4m);
+    console.log("from2to4m total questions: ", [...from2to4m.values()].reduce((a, b) => a + b, 0));
+    console.log("from4to7m", from4to7m);
+    console.log("from4to7m total questions: ", [...from4to7m.values()].reduce((a, b) => a + b, 0));
+    console.log("from7to13m", from7to13m);
+    console.log("from7to13m total questions: ", [...from7to13m.values()].reduce((a, b) => a + b, 0));
+    console.log("above13m", above13m);
+    console.log("above13m total questions: ", [...above13m.values()].reduce((a, b) => a + b, 0));
     await browser.close();
-
-    console.log("ProductArr", ProductArr);
-    console.log("under2m",under2m);
-    console.log("from2to4m",from2to4m);
-    console.log("from4to7m",from4to7m);
-    console.log("from7to13m",from7to13m);
-    console.log("above13m",above13m);
-    
 
 })();
 

@@ -6,7 +6,7 @@ module.exports = function (recipient, HTMLContent){
         service: 'gmail',
         auth: {
           user: 'trucgiaphu@gmail.com',
-          pass: 'xxx'
+          pass: 'familigetsexy'
         }
     });
 

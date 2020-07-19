@@ -111,6 +111,7 @@ import { SocketIOChatService } from '../socketio-chat.service';
             {
               this.messageList[this.messageList.length - 1].content = result[0].text;
               this.messageList[this.messageList.length - 1].type = "text";
+
             }
             // Trường hợp có img & text
             else
@@ -119,10 +120,13 @@ import { SocketIOChatService } from '../socketio-chat.service';
               this.messageList[this.messageList.length - 1].type = "text";
 
               this.messageList.push({ type: "image", content: result[1].image, from: "bot" });
+              if (result[0].text.includes('google.com')) {
+                this.messageList.push({ from: 'bot', content: 'chat với admin', type: 'chat-button'});
+              }
             }
         }
         catch {
-            this.messageList[this.messageList.length - 1].content = "Có lỗi xảy ra khi kết nối tới server";
+            this.messageList[this.messageList.length - 1].content = "Xin vui lòng chat với admin";
             this.messageList[this.messageList.length - 1].type = "text";
             // just for debug: add chat with admin button
             this.messageList.push({ from: 'bot', content: 'chat với admin', type: 'chat-button'});
