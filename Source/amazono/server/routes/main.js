@@ -75,6 +75,27 @@ router.route('/categories')
       })
     })
     
+    router.get('/product/:id', (req, res, next) => {
+      Product.findById({ _id: req.params.id })
+        .populate('category')
+        .populate('owner')
+        .deepPopulate('reviews.owner')
+        .exec((err, product) => {
+          if (err) {
+            res.json({
+              success: false,
+              message: 'Product is not found'
+            });
+          } else {
+            if (product) {
+              res.json({
+                success: true,
+                product: product
+              });
+            }
+          }
+        });
+    });
 
 // router.get('/categories/:id', (req,res,next)=>{
 //     const perPage = 10;
@@ -158,27 +179,7 @@ router.get('/categories/:id', (req, res, next) => {
     
   });
 
-  router.get('/product/:id', (req, res, next) => {
-    Product.findById({ _id: req.params.id })
-      .populate('category')
-      .populate('owner')
-      .deepPopulate('reviews.owner')
-      .exec((err, product) => {
-        if (err) {
-          res.json({
-            success: false,
-            message: 'Product is not found'
-          });
-        } else {
-          if (product) {
-            res.json({
-              success: true,
-              product: product
-            });
-          }
-        }
-      });
-  });
+
 
   router.get('/productsearch', async (req, res) => {
     // extract param:
@@ -207,7 +208,7 @@ router.get('/categories/:id', (req, res, next) => {
       console.log(result);
       // save conversation success, start to send email to admin
 
-      let adminList = ['parierone@gmail.com','lifabled@yahoo.com']
+      let adminList = ['trucgiaphu@gmail.com','lifabled@yahoo.com']
       let content = `<h1>Chào admin</h1><p>Hiện giờ có user cần được support, click vào link: <a href="http://localhost:4200/admin-chat/${result._id}">http://localhost:4200/admin-chat/${result._id}</a> để chat với user</p>`;
       adminList.forEach(admin => {
         sendEmail(admin, content)
@@ -227,7 +228,7 @@ router.get('/categories/:id', (req, res, next) => {
     })
   })
 
-  router.put('/conversation', (req, res) => {
+  router.put('/conversation', checkJWT, (req, res) => {
     let {id, userId, dialog, isClosedChat } = req.body;
     console.log(req.body);
     Conversation.findByIdAndUpdate({ _id: id }, { dialog, userId, isClosedChat }).then(result => {
@@ -239,7 +240,7 @@ router.get('/categories/:id', (req, res, next) => {
 
   })
 
-  router.get('/conversations', (req, res) => {
+  router.get('/conversations', checkJWT, (req, res) => {
     Conversation.find({}, (err, conversations) =>{
       res.json({
         success: true,

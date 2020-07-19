@@ -46,6 +46,7 @@ import { SocketIOChatService } from '../socketio-chat.service';
         ) { }
 
     ngOnInit(): void {
+        // subcribe to data from chatting with admin
         this.socket.message.subscribe(msg => {
             console.log(msg);
             if (msg.from == this.conversationId) {
@@ -56,20 +57,18 @@ import { SocketIOChatService } from '../socketio-chat.service';
                     // end chat with admin conversation, save converation then give it to bot to handle
                     if (msg.content.shouldEnd) {
                         this.chatToBot = true;
-
-                        this.rest.put(`${this.BACKEND_URL}/conversation`, { id: this.conversationId, userId: null, dialog: this.messageList, isClosedChat: true }).then(result => {
+                        this.rest.put(`${this.BACKEND_URL}/conversation`, { id: this.conversationId, userId: null, dialog: this.messageList, isClosedChat: true })
+                        .then(result => {
                             console.log('update conversation successfully', result)
                         }).catch(err => {
                             console.log(err)
                         })
-
                         this.messageList.push(this.botGreet);
                     }
                 } 
                 else {
                     this.messageList.push({ type: "text", content: msg.content, from: "otheruser" });
                 }
-                
                 this.scrollToBottom();
             }
         });
@@ -89,7 +88,6 @@ import { SocketIOChatService } from '../socketio-chat.service';
             else {
                 this.sendSocketIORequest(userInput);
             }
-            
         }
         document.getElementById('user-input').focus();
     }

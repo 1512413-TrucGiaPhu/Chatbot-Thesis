@@ -13,7 +13,8 @@ export class AuthGuardService implements CanActivate {
     if (localStorage.getItem('token')) {
       !this.data.user ? await this.data.getProfile() : '';
       // allow to access the profile route and block access the register route
-      return (state.url.startsWith('/profile') || (state.url.startsWith('/admin-chat') && (this.data.user && this.data.user.isSeller))) ? true : (this.router.navigate(['/']), false);
+      return (state.url.startsWith('/profile') || (state.url.startsWith('/admin-chat') && (this.data.user && this.data.user.isSeller))) 
+                ? true : (this.router.navigate(['/']), false);
     } 
     else {
       if (state.url.startsWith('/profile')) {

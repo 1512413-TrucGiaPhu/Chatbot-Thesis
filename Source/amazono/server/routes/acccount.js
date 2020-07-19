@@ -13,7 +13,6 @@ router.post('/signup', (req,res,next)=>{
     user.password = req.body.password;
     user.picture = user.gravatar();
     user.isSeller = req.body.isSeller;
-
     User.findOne({ email: req.body.email }, (err, existingUser)=>{
         if (existingUser){
             res.json({ 
@@ -22,13 +21,11 @@ router.post('/signup', (req,res,next)=>{
             });
         } else {
             user.save();
-
             var token = jwt.sign({
                 user: user,
             }, config.secret, {
                 expiresIn: '7d'
             });
-
             res.json({
                 success : true,
                 message: 'Enjoy your token',
@@ -42,14 +39,12 @@ router.post('/signup', (req,res,next)=>{
 router.post('/login', (req,res,next)=>{
     User.findOne({ email: req.body.email}, (err, user)=>{
         if(err) throw err;
-
         if(!user){
             res.json({
                 success: false,
                 message: 'Authentication failed, User not found'
             });
         }else if(user){
-
             var validPassword = user.comparePassword(req.body.password);
             if (!validPassword) {
                 res.json({
@@ -62,7 +57,6 @@ router.post('/login', (req,res,next)=>{
                 }, config.secret, {
                     expiresIn: '7d'
                 });
-
                 res.json({ 
                     success: true,
                     message: 'Enjoy your token',

@@ -6,7 +6,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class RestApiService {
-  private chatbotUrl = "http://localhost:5005/webhooks/rest/webhook";
+  // private chatbotUrl = "http://localhost:5005/webhooks/rest/webhook";
+  private chatbotUrl = 'http://34.87.52.153/webhooks/rest/webhook';
 
   constructor(private http: HttpClient) { }
 
