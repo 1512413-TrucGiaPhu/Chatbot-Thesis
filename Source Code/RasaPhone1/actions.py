@@ -5,8 +5,6 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import FollowupAction, AllSlotsReset, SlotSet
 from rasa_sdk.forms import FormAction
 from rasa_sdk.events import (EventType)
-import pymongo
-from pymongo import MongoClient
 import csv
 import sys
 import json
@@ -30,7 +28,7 @@ class AskWhatAction(Action):
         dataPhone = {'PhoneName': phone_name, 'PhoneProperty': phone_property, 'PhonePropertyValue': phone_property_value}
        
 
-        rPost = requests.post('http://localhost:3030/api/answer/what', data=dataPhone)
+        rPost = requests.post('https://62caf326500f.ngrok.io/api/answer/what', data=dataPhone)
         results = rPost.json()
         ImageLink =""
     
@@ -38,7 +36,7 @@ class AskWhatAction(Action):
             message = results["message"]
         else:
             messageLasted = results["message"]
-            SearchKeyword = requests.post('http://localhost:3030/api/answer/searchkeyword', data=dataPhone)
+            SearchKeyword = requests.post('https://62caf326500f.ngrok.io/api/answer/searchkeyword', data=dataPhone)
             results = SearchKeyword.json()
             print(results)
             
@@ -64,7 +62,7 @@ class AskYesNoAction(Action):
         dataPhone = {'PhoneName': phone_name, 'PhoneProperty': phone_property, 'PhonePropertyValue': phone_property_value}
        
 
-        rPost = requests.post('http://localhost:3030/api/answer/yesno', data=dataPhone)
+        rPost = requests.post('https://62caf326500f.ngrok.io/api/answer/yesno', data=dataPhone)
         results = rPost.json()
         ImageLink =""
     
@@ -72,7 +70,7 @@ class AskYesNoAction(Action):
             message = results["message"]
         else:
             messageLasted = results["message"]
-            SearchKeyword = requests.post('http://localhost:3030/api/answer/searchkeyword', data=dataPhone)
+            SearchKeyword = requests.post('https://62caf326500f.ngrok.ioapi/answer/searchkeyword', data=dataPhone)
             results = SearchKeyword.json()
             print(results)
             
@@ -93,16 +91,17 @@ class AskCompareAction(Action):
         # lấy các entities
         entityPhoneName = tracker.get_latest_entity_values("phone_name")
         if (entityPhoneName):
-            phone_name_first = next(entityPhoneName)
-            phone_name_second = next(entityPhoneName)
+            phone_name_first = next(entityPhoneName,None)
+            phone_name_second = next(entityPhoneName,None)
 
         phone_property = tracker.get_slot("phone_property")
-        print (phone_name_first)
-        print(phone_name_second)
-        print(phone_property)
-        dataPhone = {'PhoneNameFirst': phone_name_first,'PhoneNameSecond':phone_name_second,'PhoneProperty': phone_property}
 
-        rPost = requests.post('http://localhost:3030/api/answer/compare', data=dataPhone)
+        if phone_name_second is None:
+            dataPhone = {'PhoneNameFirst': phone_name_first,'PhoneNameSecond':'','PhoneProperty': phone_property}
+        else:
+            dataPhone = {'PhoneNameFirst': phone_name_first,'PhoneNameSecond':phone_name_second,'PhoneProperty': phone_property}
+        print(dataPhone)
+        rPost = requests.post('https://62caf326500f.ngrok.io/api/answer/compare', data=dataPhone)
         results = rPost.json()
         # # Send responses back to the user
         dispatcher.utter_message(text=results["message"])

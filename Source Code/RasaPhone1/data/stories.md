@@ -57,7 +57,7 @@
 * thank
     - utter_thank
 
-## Compare
+## Compare deny
 * greet
     - utter_greet
 * ask_compare
@@ -68,7 +68,7 @@
 * thank
     - utter_thank
 
-## Compare
+## Compare affirm
 * greet
     - utter_greet
 * ask_compare
@@ -91,6 +91,13 @@
     - slot{"phone_name":"iPhone 11"}
 * ask_what{"phone_name":"iPhone 11","phone_property":"sim"}
     - action_answer_what
+    - utter_question
+* affirm
+    - utter_affirm
+* inform
+    - ask_form
+    - form{"name": "ask_form"}
+    - form{"name": null} 
 * thank
     - utter_thank
 
@@ -100,6 +107,9 @@
     - slot{"phone_name":"Vivo Y19"}
 * ask_what{"phone_name":"Vivo Y19","phone_property":"chụp hình"}
     - action_answer_what
+    - utter_question
+* deny
+    - utter_deny
 * thank
     - utter_thank
 
@@ -110,6 +120,9 @@
     - slot{"phone_name":"iPhone 11 Pro Max"}
 * ask_what{"phone_name":"iPhone 11 Pro Max","phone_property":"quay video"}
     - action_answer_what
+    - utter_question
+* deny
+    - utter_deny
 * thank
     - utter_thank
 
@@ -120,6 +133,13 @@
     - slot{"phone_name":"Samsung Galaxy S20"}
 * ask_what{"phone_property":"giá","phone_name":"Samsung Galaxy S20"}
     - action_answer_what
+    - utter_question
+* affirm
+    - utter_affirm
+* inform
+    - ask_form
+    - form{"name": "ask_form"}
+    - form{"name": null} 
 * thank
     - utter_thank
 
@@ -129,6 +149,7 @@
     - slot{"phone_name":"Samsung Galaxy A51"}
 * ask_what{"phone_name":"Samsung Galaxy A51","phone_property":"khuyến mãi"}
     - action_answer_what
+    - utter_question
 * thank
     - utter_thank
 
@@ -138,6 +159,7 @@
     - slot{"phone_name":"BlackBerry KEYone"}
 * ask_what{"phone_name":"BlackBerry KEYone","phone_property":"android"}
     - action_answer_what
+    - utter_question
 * thank
     - utter_thank
 
@@ -156,6 +178,7 @@
     - slot{"phone_name":"Vivo Y17"}
 * ask_what{"phone_property":"cấu hình","phone_name":"Vivo Y17"}
     - action_answer_what
+    - utter_question
 * thank
     - utter_thank
 
@@ -165,6 +188,7 @@
     - slot{"phone_name":"iPhone 7 Plus"}
 * ask_what{"phone_property":"chơi game","phone_name":"iPhone 7 Plus","phone_property_value":"bao lâu"}
     - action_answer_what
+    - utter_question
 * thank
     - utter_thank
 
@@ -202,6 +226,9 @@
     - slot{"phone_name":"OPPO Reno2 F"}
 * ask_yes_no{"phone_name":"OPPO Reno2 F","phone_property":"chống nước"}
     - action_answer_yes_no
+    - utter_question
+* deny
+    - utter_deny
 * thank
     - utter_thank
 
@@ -211,6 +238,9 @@
     - slot{"phone_name":"OPPO Reno2 F"}
 * ask_yes_no{"phone_name":"OPPO Reno2 F","phone_property":"nhân bản ứng dụng"}
     - action_answer_yes_no
+    - utter_question
+* affirm
+    - utter_affirm
 * thank
     - utter_thank
 
@@ -220,6 +250,9 @@
     - slot{"phone_name":"iPhone 11 Pro"}
 * ask_yes_no{"phone_name":"iPhone 11 Pro","phone_property":"sim"}
     - action_answer_yes_no
+    - utter_question
+* deny
+    - utter_deny
 * thank
     - utter_thank
 
@@ -229,6 +262,7 @@
     - slot{"phone_name":"iPhone 8 Plus"}
 * ask_yes_no{"phone_name":"iPhone 8 Plus","phone_property":"có hàng"}
     - action_answer_yes_no
+    - utter_question
 * thank
     - utter_thank
 
@@ -238,6 +272,7 @@
     - slot{"phone_name":"Samsung Galaxy A51"}
 * ask_yes_no{"phone_name":"Samsung Galaxy A51","phone_property":"còn hàng"}
     - action_answer_yes_no
+    - utter_question
 * thank
     - utter_thank
 
@@ -247,6 +282,7 @@
     - slot{"phone_name":"Samsung Galaxy Note 10 Lite"}
 * ask_yes_no{"phone_name":"Samsung Galaxy Note 10 Lite","phone_property":"khóa ứng dụng"}
     - action_answer_yes_no
+    - utter_question
 * thank
     - utter_thank
 
@@ -292,6 +328,7 @@
     - slot{"phone_name":"Samsung Galaxy A01"}
 * ask_yes_no{"phone_name":"Samsung Galaxy A01","phone_property":"mở khóa","phone_property_value":"khuôn mặt"}
     - action_answer_yes_no
+    - utter_question
 * thank
     - utter_thank    
 
@@ -337,6 +374,7 @@
     - slot{"phone_name":"Realme 6"}
 * ask_compare{"phone_name":"Realme 6"}
     - action_answer_compare
+    - utter_question
 * thank
     - utter_thank
 
@@ -346,6 +384,7 @@
     - slot{"phone_name":"Xiaomi Mi 9 SE"}
 * ask_compare{"phone_name":"Xiaomi Mi 9 SE","phone_property":"chơi game"}
     - action_answer_compare
+    - utter_question
 * thank
     - utter_thank
 
@@ -355,6 +394,7 @@
     - slot{"phone_name":"Xiaomi Redmi Note 8"}
 * ask_compare{"phone_name":"Xiaomi Redmi Note 8"}
     - action_answer_compare
+    - utter_question
 * thank
     - utter_thank
 
@@ -374,6 +414,7 @@
     - slot{"phone_name":"Realme 6"}
 * ask_compare{"phone_name":"Realme 6"}
     - action_answer_compare
+    - utter_question
 * thank
     - utter_thank
 

@@ -4,6 +4,10 @@
 - hi
 - hello
 - Chào shop
+- Alo ad
+- Alo bot
+- Shop ơi
+- Bot ơi
 
 ## intent:ask_what
 - [Kích thước](phone_property) của [Samsung Galaxy S10](phone_name) là bao nhiêu?
@@ -18,30 +22,30 @@
 - Cho em hỏi [iPhone Xs Max](phone_name) [pin](phone_property) bao nhiêu?
 - [Độ phân giải màn hình](phone_property) của [Phone 11](phone_name) là bao nhiêu?
 - Cho em hỏi là [Vivo Y19](phone_name) [chụp ảnh](phone_property) rõ nét ko ạ?
-- Cho em hỏi [Pin](phone_property) của [iPhone 7 Plus](phone_name) chơi game [bao lâu](phone_property_value) ạ?
-- [OPPO Reno2 F](phone_name) [bao lâu](phone_property_value) thì hết [pin](phone_property) ạ
 - Cho mình hỏi [BlackBerry KEYone](phone_name) có mấy [sim](phone_property) vậy?
 - Cho em hỏi điện thoại [BlackBerry KEYone](phone_name) chạy [android](phone_property) mậy vậy?
 - Cho em hỏi [BlackBerry Evolve](phone_name) mấy [sim](phone_property) vậy ạ?
 - Cho mình hỏi [Huawei Y9 Prime](phone_name) xài [kính cảm ứng](phone_property) gì vậy?
 - Cho em hỏi máy [Xiaomi Redmi Note 8 Pro](phone_name) xài [chất liệu](phone_property) khung gì ạ?
-- ad cho mình hỏi [pin](phone_property) ổn định của [Huawei Nova 3i](phone_name) là dùng đc [bao lâu](phone_property_value) ?
+- Cho em hỏi [cấu hình](phone_property) [Vivo Y19](phone_name) với ạ?
+- Cho em hỏi [giá](phone_property) [Vivo Y19](phone_name) là bao nhiêu tiền ạ?
 - [Ram](phone_property) [OPPO A5](phone_name) là  bao nhiêu ạ?
 - [Chuẩn kháng nước](phone_property) của [iPhone 11](phone_name) là bao nhiêu?
+- Cho em hỏi điện thoại [Vivo Y17](phone_name) chạy [android](phone_property) mấy vậy?
+- ad cho mình hỏi [pin](phone_property) ổn định của [Huawei Nova 3i](phone_name) là dùng đc [bao lâu](phone_property_value) ?
 - [iPhone Xs 64GB](phone_name) có tính nang [chặn tin nhắn](phone_property) không vậy ad?
 - [Nokia](phone_name) 110 [danh bạ](phone_property) bao nhiêu số ạ
 - [Realme C2](phone_name) bao nhiêu [tiền](phone_property) ạ
 - [Cấu hình](phone_property) [iPhone 11](phone_name) là bao nhiêu?
-- Cho em hỏi [cấu hình](phone_property) [Vivo Y19](phone_name) với ạ?
-- Cho em hỏi [giá](phone_property) [Vivo Y19](phone_name) là bao nhiêu tiền ạ?
 - Cho em hỏi [OPPO A5](phone_name) bao nhiêu [tiền](phone_property) ạ
 - [Giá](phone_property) của [iPhone Xs Max](phone_name) là bao nhiêu?
 - Cho em hỏi [giá](phone_property) [iPhone 11](phone_name) hiện tại là bao nhiêu?
 - Mua [trả góp](phone_property) [Realme 5 Pro](phone_name) [giá](phone_property) bao nhiêu ạ
 - Mua điện thoại [OPPO Reno2](phone_name) có [khuyến mãi](phone_property) gì ko?
 - Cho em hỏi [pin](phone_property) của [iPhone 7 Plus](phone_name) [chơi game](phone_property) [bao lâu](phone_property_value) ạ?
+- Cho em hỏi [Pin](phone_property) của [iPhone 7 Plus](phone_name) chơi game [bao lâu](phone_property_value) ạ?
+- [OPPO Reno2 F](phone_name) [bao lâu](phone_property_value) thì hết [pin](phone_property) ạ
 - Cho em hỏi điện thoại [BlackBerry KEYone](phone_name) chạy [android](phone_property) mấy vậy?
-- Cho em hỏi điện thoại [Vivo Y17](phone_name) chạy [android](phone_property) mấy vậy?
 - Cần những thủ tục và giấy tờ gì để mua [trả góp](phone_property) được điện thoại [Vivo Y17](phone_name) ạ?
 - Cho em hỏi giấy tờ [trả góp](phone_property)  [iPhone 11](phone_name) với ạ?
 - Cho em hỏi [OPPO Reno2 F](phone_name) [bao lâu](phone_property_value) thì hết [pin](phone_property) ạ?
@@ -106,25 +110,27 @@
 - [Itel S15](phone_name) [nặng](phone_property) bao nhiêu gram vậy ad.
 
 ## intent:ask_yes_no
-- Máy [OPPO Reno2 F](phone_name) này có [nhân bản ứng dụng](phone_property) đúng k ạ ?
 - Cho em hỏi [Huawei P30](phone_name) có [chống nước](phone_property) không?
 - Cho em hỏi máy [Samsung Galaxy A30s](phone_name) này có tính năng [always on display](phone_property) không?
 - Ad cho e hỏi là [iPhone 11 Pro](phone_name) có 2 [sim](phone_property) ko ạ?
 - Cho mình hỏi [iPhone Xs]{"entity": "phone_name", "value": "iPhone Xs 64GB"} này 2 [sim](phone_property) phải k ạ
-- Cho em hỏi [iPhone 8 Plus](phone_name) [có hàng](phone_property) không vậy ad?
 - Cho hỏi bên mình [còn hàng](phone_property) [Realme C3](phone_name) không?
 - Cho hỏi bên mình [có hàng](phone_property) [Realme C3](phone_name) không?
 - [Samsung Galaxy S20](phone_name) có tính năng [sạc cho thiết bị khác](phone_property) ko
 - Máy [Samsung Galaxy Note 10 Lite](phone_name) có chức năng [khóa ứng dụng](phone_property) k vậy qtv
 - Sản phẩm [OPPO Reno2](phone_name) này [chơi game](phone_property) [mượt](phone_property_value) ko?
 - [OPPO Reno2](phone_name) [chống nước](phone_property) được ko vậy?
+- Cho mình hỏi máy [Samsung Galaxy A01](phone_name) có [mở khoá](phone_property) bằng [vân tay](phone_property_value) không?
 - Máy [Vivo S1 Pro](phone_name) có [chống nước](phone_property) không ạ ?
-- Cho em hỏi [iPhone 11 Pro Max](phone_name) mua rồi có sạc trong 8 tiếng không?
-- Cho em hỏi [OPPO Find X2](phone_name) có tính năng [chặn tin nhắn](phone_property) không a?
-- Máy [Samsung Galaxy A50](phone_name) kết nối được với [usb](phone_property) không shop?
 - Máy [Samsung Galaxy A50](phone_name) này có [chống rung](phone_property) bằng phần mềm không?
 - Cho em hỏi [BlackBerry KEYone](phone_name) có [gọi hình ảnh](phone_property) không?
+- Máy [BlackBerry KEYone](phone_name) có [ghi âm](phone_property) đc cuộc gọi không vậy ?
+- Máy [Samsung Galaxy A50](phone_name) kết nối được với [usb](phone_property) không shop?
+- Cho em hỏi [OPPO Find X2](phone_name) có tính năng [chặn tin nhắn](phone_property) không a?
 - Ad cho em hỏi [Xiaomi Mi 9 SE](phone_name) có [nhân đôi ứng dụng](phone_property) như facebook zalo không ạ?
+- Sản phẩm [Itel S15 Pro](phone_name) có hỗ trợ [trả góp](phone_property) ko ạ
+- Cho em hỏi [iPhone 8 Plus](phone_name) [có hàng](phone_property) không vậy ad?
+- Máy [OPPO Reno2 F](phone_name) này có [nhân bản ứng dụng](phone_property) đúng k ạ ?
 - Cho e hỏi là [Samsung Galaxy A50s](phone_name) có hỗ trợ [ARCore](phone_property) của google không ạ?
 - [OPPO A9](phone_name) có [ứng dụng](phone_property) [tải phim nhanh](phone_property_value) không?
 - Máy [Realme 5 Pro](phone_name) xài 2 [sim](phone_property) 1 thẻ cùng lúc được không ?
@@ -137,7 +143,7 @@
 - Máy [Samsung Galaxy A20](phone_name) khi mua mới có [nguyên seal](phone_property) không ạ?
 - Cho mình hỏi [Vivo Y17](phone_name) cập nhật [android 9](phone_property) được không ad?
 - Cho mình hỏi máy [Vsmart Active 3](phone_name) có [lọc ánh sáng xanh](phone_property) không?
-- Cho mình hỏi máy [Samsung Galaxy A01](phone_name) có [mở khoá](phone_property) bằng [vân tay](phone_property_value) không?
+
 - Cho em hỏi [Vsmart Joy 3](phone_name) có [mở khóa](phone_property) bằng [khuôn mặt](phone_property_value) không?
 - Điện thoại [Xiaomi Redmi 8A](phone_name) này hổ trợ [chiếu màn hình lên tivi](phone_property) ko ạ?
 - Cho mình hỏi máy [Huawei Y7 Pro](phone_name) này [thân liền](phone_property) không tháo được ạ?
@@ -162,7 +168,6 @@
 - Cho e hỏi là [Samsung Galaxy A50s](phone_name) có hỗ trợ [ARCore](phone_property) của google không ạ
 - [OPPO A9](phone_name) có [ứng dụng](phone_property) [tải phim nhanh](phone_property_value) không?
 - Máy [Realme 5 Pro](phone_name) xài 2 [sim](phone_property) 1 thẻ cùng lúc được không ?
-- Máy [BlackBerry KEYone](phone_name) có [ghi âm](phone_property) đc cuộc gọi không vậy ?
 - Điện thoại [BlackBerry KEYone](phone_name) [hàng mỹ](phone_property) hả ad?
 - Cho mình hỏi [Nokia 7.2](phone_name) có [ghi âm](phone_property) cuộc gọi không ạ?
 - [Realme 5 Pro](phone_name) chơi [honkai impact 3](phone_property) [mượt](phone_property_value) không ạ ?
@@ -190,7 +195,6 @@
 - Điện thoại [Realme C2](phone_name) có chức năng [la bàn](phone_property) không?
 - Điện thoại [Realme C2](phone_name) chơi [free fire](phone_property) [max setting](phone_property_value) ổn k ạ
 - Máy [Itel S15 Pro](phone_name) này ko [chơi game](phone_property) thì dùng có [lag](phone_property_value) ko
-- Sản phẩm [Itel S15 Pro](phone_name) có hỗ trợ [trả góp](phone_property) ko ạ
 - [Itel S15 Pro](phone_name) có chơi được [pubg](phone_property) ko ạ?
 - [Itel S15 Pro](phone_name) chơi đc [free fire](phone_property) ko
 - sạc [Vsmart Star](phone_name) có [bảo hành](phone_property) không ad
@@ -226,32 +230,32 @@
 
 ## intent:ask_compare
 - Giúp em so sánh [Realme 5 Pro]{"entity": "phone_name", "role": "first"} vs [Realme 6]{"entity": "phone_name", "role": "second"} với ạ
+- [Vivo Y11]{"entity": "phone_name", "role": "first"} với [Xiaomi Redmi 8]{"entity": "phone_name", "role": "second"} con nào hơn ạ
+- [Vivo Y11]{"entity": "phone_name", "role": "first"} này với [Samsung Galaxy A10s]{"entity": "phone_name", "role": "second"} cái nào tốt hơn
+- [Realme C2]{"entity": "phone_name", "role": "first"} với [Vivo Y11]{"entity": "phone_name", "role": "second"} cái nào tốt hơn ạ
+- em đang phân vân là không biết nên mua con [Samsung Note 10 Lite]{"entity": "phone_name", "role": "first"} này hay mua con [iPhone 8 Plus]{"entity": "phone_name", "role": "second"} vì em thì thích SS còn bạn gái em thì thích IP, anh.chị tư vấn giúp em vs ạ, Nếu hợp lí thì em mua cả 2 luôn.
+- Cho em hỏi [cấu hình](phone_property) của [iPhone 11]{"entity": "phone_name", "role": "first"} và [iPhone Xs Max]{"entity": "phone_name", "role": "second"}
+- Cho mình hỏi [chip](phone_property) của máy [iPhone 11]{"entity": "phone_name", "role": "first"} và [chip](phone_property) của máy [Samsung Galaxy Note 10 Lite]{"entity": "phone_name", "role": "second"} thì máy nào có hiệu năng mạnh hơn
+- Máy [iPhone 11 Pro Max]{"entity": "phone_name", "role": "first"} này với [iPhone Xs Max]{"entity": "phone_name", "role": "second"} máy nào [chụp ảnh](phone_property) đẹp hơn
+- Giữa [Samsung Galaxy A51]{"entity": "phone_name", "role": "first"} với [Samsung Galaxy A50s]{"entity": "phone_name", "role": "second"} thì cái nào tốt hơn nhỉ
+- [Realme 5]{"entity": "phone_name", "role": "first"} với [Xiaomi Redmi Note 8]{"entity": "phone_name", "role": "second"} cái nào nhỉnh hơn ạ
+- [Samsung Galaxy A30s]{"entity": "phone_name", "role": "first"} và [Samsung Galaxy A20s]{"entity": "phone_name", "role": "second"} vậy nên chọn máy nào
 - [Xiaomi Redmi 8]{"entity": "phone_name", "role": "first"} với [Xiaomi Redmi 7]{"entity": "phone_name", "role": "second"} con nào [chơi game](phone_property) ngon hơn?
 - [Xiaomi Redmi 8]{"entity": "phone_name", "role": "first"} với con [Samsung Galaxy A10s]{"entity": "phone_name", "role": "second"} con nào chơi [liên quân](phone_property) tốt hơn ạ?
-- Giữa [Samsung Galaxy A51]{"entity": "phone_name", "role": "first"} với [Samsung Galaxy A50s]{"entity": "phone_name", "role": "second"} thì cái nào tốt hơn nhỉ
 - [Samsung Galaxy A51]{"entity": "phone_name", "role": "first"} với [BlackBerry KEYone]{"entity": "phone_name", "role": "second"} cái nào [chơi game](phone_property) xem phim mượt hơn vậy
 - [Huawei P30 Lite]{"entity": "phone_name", "role": "first"} và [Xiaomi Note 8 Pro]{"entity": "phone_name", "role": "second"} cái nào đẹp và dùng tốt hơn ạ, xin Qtv cho mình xin cái so sánh
 - [Xiaomi Redmi Note 8 Pro]{"entity": "phone_name", "role": "first"} với cái [Xiaomi Mi 9 SE]{"entity": "phone_name", "role": "second"} cái nào [chơi game](phone_property) lướt web mượt hơn vậy
 - Máy [Realme 6 Pro]{"entity": "phone_name", "role": "first"} và [Realme 5 Pro]{"entity": "phone_name", "role": "second"} cái nào [chơi game](phone_property) ngon hơn
-- [Realme 5]{"entity": "phone_name", "role": "first"} với [Xiaomi Redmi Note 8]{"entity": "phone_name", "role": "second"} cái nào nhỉnh hơn ạ
-- [Samsung Galaxy A30s]{"entity": "phone_name", "role": "first"} và [Samsung Galaxy A20s]{"entity": "phone_name", "role": "second"} vậy nên chọn máy nào
 - [OPPO A7]{"entity": "phone_name", "role": "first"} vs [OPPO A5s]{"entity": "phone_name", "role": "second"} chip nào [chơi game](phone_property) mượt hơn ạ
 - [OPPO A5s]{"entity": "phone_name", "role": "first"} và [Samsung Galaxy A30s]{"entity": "phone_name", "role": "second"} chip nào [chơi game](phone_property) mượt ạ
 - [OPPO A5s]{"entity": "phone_name", "role": "first"} với [Vivo Y12]{"entity": "phone_name", "role": "second"} nào ngon hơn anh
 - [Xiaomi Redmi 7]{"entity": "phone_name", "role": "first"} với [Realme 5]{"entity": "phone_name", "role": "second"} thì con nào chiến [game](phone_property) ngon hơn ạ
 - [OPPO A1K]{"entity": "phone_name", "role": "first"} so với [Vivo Y19]{"entity": "phone_name", "role": "second"} thì cái nào [chơi game](phone_property) khỏe hơn
 - [OPPO A1K]{"entity": "phone_name", "role": "first"} này [chơi game](phone_property) khỏe hơn [OPPO A31]{"entity": "phone_name", "role": "second"} ko ạ
-- [Vivo Y11]{"entity": "phone_name", "role": "first"} với [Xiaomi Redmi 8]{"entity": "phone_name", "role": "second"} con nào hơn ạ
-- [Vivo Y11]{"entity": "phone_name", "role": "first"} này với [Samsung Galaxy A10s]{"entity": "phone_name", "role": "second"} cái nào tốt hơn
-- [Realme C2]{"entity": "phone_name", "role": "first"} với [Vivo Y11]{"entity": "phone_name", "role": "second"} cái nào tốt hơn ạ
 - Cho em hỏi [cấu hình](phone_property) của [iPhone 8 Plus]{"entity": "phone_name", "role": "first"} so với [iPhone SE]{"entity": "phone_name", "role": "second"} với ạ
 - Cho em hỏi [cấu hình](phone_property) của [iPhone 8 Plus]{"entity": "phone_name", "role": "first"} và [iPhone 7 Plus]{"entity": "phone_name", "role": "second"} với ạ
-- Cho em hỏi [cấu hình](phone_property) của [iPhone 11]{"entity": "phone_name", "role": "first"} và [iPhone Xs Max]{"entity": "phone_name", "role": "second"}
-- Cho mình hỏi [chip](phone_property) của máy [iPhone 11]{"entity": "phone_name", "role": "first"} và [chip](phone_property) của máy [Samsung Galaxy Note 10 Lite]{"entity": "phone_name", "role": "second"} thì máy nào có hiệu năng mạnh hơn
 - [Samsung Galaxy Note 10 Lite]{"entity": "phone_name", "role": "first"} tốt hơn [iPhone Xs Max]{"entity": "phone_name", "role": "second"} về hiệu năng và [chụp ảnh](phone_property) phải k
-- Máy [iPhone 11 Pro Max]{"entity": "phone_name", "role": "first"} này với [iPhone Xs Max]{"entity": "phone_name", "role": "second"} máy nào [chụp ảnh](phone_property) đẹp hơn
 - [Samsung Galaxy A50s]{"entity": "phone_name", "role": "first"} với [Samsung Galaxy A51]{"entity": "phone_name", "role": "second"} nên chọn máy nào vậy admin
-- em đang phân vân là không biết nên mua con [Samsung Note 10 Lite]{"entity": "phone_name", "role": "first"} này hay mua con [iPhone 8 Plus]{"entity": "phone_name", "role": "second"} vì em thì thích SS còn bạn gái em thì thích IP, anh.chị tư vấn giúp em vs ạ, Nếu hợp lí thì em mua cả 2 luôn.
 - Cho mình hỏi [chip](phone_property) của máy [iPhone 11]{"entity": "phone_name", "role": "first"} và [chip](phone_property) của máy [OPPO Find X]{"entity": "phone_name", "role": "second"} thì máy nào có hiệu năng mạnh hơn
 - Cho mình hỏi giữa con [oppo a9]{"entity": "phone_name", "role": "first"} và [Samsung Galaxy A70]{"entity": "phone_name", "role": "second"} thì con nào chơi [liên quân](phone_property) mượt max setting mượt hơn vậy
 - [Chip](phone_property) p60 trên [oppo reno3]{"entity": "phone_name", "role": "first"} và [chip](phone_property) p70 trên [ViVo V19 Neo]{"entity": "phone_name", "role": "second"} thì con nào mạnh hơn ạ
@@ -374,9 +378,6 @@
 ## intent:deny
 - no
 - never
-- I don't think so
-- don't like that
-- no way
 - not really
 - không
 - không đúng
@@ -385,32 +386,6 @@
 - thôi
 - được rồi
 
-## intent:mood_great
-- perfect
-- very good
-- great
-- amazing
-- wonderful
-- I am feeling very good
-- I am great
-- I'm good
-
-## intent:mood_unhappy
-- sad
-- very sad
-- unhappy
-- bad
-- very bad
-- awful
-- terrible
-- not very good
-- extremely sad
-- so sad
-- Tôi buồn.
-- Tôi cảm thấy rất buồn
-- Anh không được vui.
-- Em không được vui
-- adasdasdasd
 
 ## intent:thank
 - cảm ơn
@@ -420,17 +395,14 @@
 - thanks
 - cảm ơn bot
 
-## intent:bot_challenge
-- are you a bot?
-- are you a human?
-- am I talking to a bot?
-- am I talking to a human?
 
 ## intent:out_of_scope
 - Cái gì?
 - Tôi muốn đặt đồ ăn
 - Tôi muốn mua laptop
 - Nói chuyện với t nhé
+- Tôi muốn hỏi về laptop
+
 
 
 
