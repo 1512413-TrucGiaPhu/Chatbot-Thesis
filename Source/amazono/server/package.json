@@ -21,7 +21,7 @@
     "algoliasearch": "^3.32.0",
     "async": "^2.6.2",
     "aws-sdk": "^2.382.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "cloudinary": "^1.22.0",
